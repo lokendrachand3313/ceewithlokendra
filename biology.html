@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology · Class 11 & 12 · MedPrep</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Gemini API (will be used for question generation) -->
+    <script src="https://www.gstatic.com/generative-ai/script/generative-ai.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e1f0f5 100%);
+            color: #053b48;
+            min-height: 100vh;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: rgba(6, 38, 53, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(0,20,30,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #4f9da6;
+        }
+
+        .logo a {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #b7e4f0, #f4e3b1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #f0f9ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.2rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a i {
+            color: #80cdd9;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #ffcf8d;
+            color: #ffedc9;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            border-bottom-color: #ffb24d;
+            color: #ffe6b3;
+        }
+
+        /* ---------- MAIN CONTAINER ---------- */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* page header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem 2.5rem;
+            border-radius: 60px;
+            box-shadow: 0 15px 25px rgba(28, 97, 110, 0.15);
+            border: 2px solid rgba(128, 205, 217, 0.5);
+        }
+
+        .page-header i {
+            font-size: 4rem;
+            color: #1d7a8c;
+            background: #d7f0f5;
+            padding: 1rem;
+            border-radius: 50%;
+        }
+
+        .page-header h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #0f4e5a, #258096);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-sub {
+            color: #3a7e8b;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        /* ---------- CLASS SELECTOR ---------- */
+        .class-selector {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem 4rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 20px 30px rgba(18, 78, 90, 0.25);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            flex: 0 1 auto;
+            min-width: 250px;
+        }
+
+        .class-card i {
+            font-size: 3rem;
+            color: #135f6e;
+            margin-bottom: 1rem;
+        }
+
+        .class-card h2 {
+            font-size: 2.8rem;
+            color: #0a4b58;
+            font-weight: 700;
+        }
+
+        .class-card p {
+            color: #3b8595;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .class-card.active {
+            border-color: #0f6b7c;
+            background: linear-gradient(145deg, #e0f7fc, #c7e9f0);
+            transform: scale(1.05);
+            box-shadow: 0 25px 35px #166c7e;
+        }
+
+        /* ---------- SYLLABUS SECTIONS ---------- */
+        .syllabus-container {
+            margin: 2rem 0;
+        }
+
+        .subject-section {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 40px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 2px solid rgba(255,255,255,0.9);
+            box-shadow: 0 15px 30px rgba(36, 102, 116, 0.15);
+        }
+
+        .subject-badge {
+            display: inline-block;
+            background: #1e6f80;
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .unit-card {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 8px solid #35a7b9;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.03);
+            transition: 0.2s;
+        }
+
+        .unit-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 20px rgba(40, 111, 124, 0.15);
+        }
+
+        .unit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .unit-header h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b4f5c;
+        }
+
+        .unit-header span {
+            font-size: 1.1rem;
+            background: #e2f2f6;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            color: #1b6879;
+            font-weight: 500;
+        }
+
+        .unit-header i {
+            font-size: 1.8rem;
+            color: #247e90;
+            transition: 0.3s;
+        }
+
+        .unit-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            margin-top: 0;
+        }
+
+        .unit-card.expanded .unit-content {
+            max-height: 800px;
+            transition: max-height 0.6s ease-in;
+            margin-top: 1.5rem;
+        }
+
+        .unit-card.expanded .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .topic-list {
+            list-style: none;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.2rem;
+            margin: 0.5rem 0;
+            background: #f0f9fc;
+            border-radius: 50px;
+            border: 1px solid #bee2ea;
+            transition: 0.2s;
+        }
+
+        .topic-item:hover {
+            background: #daf1f7;
+            border-color: #4fa9b9;
+        }
+
+        .topic-item i {
+            color: #2f8b9d;
+            font-size: 1.3rem;
+            margin-right: 1rem;
+        }
+
+        .topic-info {
+            flex: 1;
+        }
+
+        .topic-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0a4955;
+        }
+
+        .topic-hours {
+            color: #4a808c;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .generate-btn {
+            background: none;
+            border: 2px solid #228da1;
+            color: #1a6c7c;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .generate-btn:hover {
+            background: #228da1;
+            color: white;
+        }
+
+        .generate-btn i {
+            font-size: 1rem;
+        }
+
+        /* ---------- QUIZ MODAL ---------- */
+        .quiz-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 38, 53, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .quiz-container {
+            background: #f5fbfe;
+            border-radius: 50px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            box-shadow: 0 40px 60px rgba(0,0,0,0.5);
+            border: 3px solid #8fcbd7;
+            position: relative;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px dashed #319eb3;
+        }
+
+        .quiz-header h2 {
+            font-size: 2.2rem;
+            color: #07424f;
+        }
+
+        .close-quiz {
+            background: none;
+            border: none;
+            font-size: 3rem;
+            cursor: pointer;
+            color: #216c7c;
+            line-height: 1;
+        }
+
+        .question-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 15px rgba(37, 109, 124, 0.1);
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #053b48;
+            margin-bottom: 1.2rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .option {
+            background: #ecf8fb;
+            border: 2px solid #b1dae4;
+            border-radius: 40px;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #d0edf5;
+            border-color: #40a6b9;
+        }
+
+        .option.selected {
+            background: #298f9f;
+            border-color: #298f9f;
+            color: white;
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #1b6c7c;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .submit-btn, .cancel-btn {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .submit-btn {
+            background: #0f6e80;
+            color: white;
+            box-shadow: 0 8px 0 #074956;
+        }
+
+        .submit-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #074956;
+        }
+
+        .cancel-btn {
+            background: #cbdbe1;
+            color: #1e4953;
+        }
+
+        /* ---------- RESULT MODAL ---------- */
+        .result-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 38, 53, 0.9);
+            z-index: 1100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 60px;
+            padding: 3rem;
+            max-width: 600px;
+            text-align: center;
+            border: 5px solid #4bb5c9;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #0d5f6e, #1f96ab);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+        }
+
+        .score-circle span {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .result-message {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+        }
+
+        .result-feedback {
+            font-size: 1.4rem;
+            color: #2d6c7a;
+            margin-bottom: 2rem;
+        }
+
+        .close-result {
+            background: #146b7c;
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading i {
+            font-size: 3rem;
+            color: #1a869b;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: #03242e;
+            color: #afd5df;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.htm">⚕️MedPrep</a>
+        </div>
+        <div class="nav-links">
+            <a href="physics.htm"><i class="fas fa-atom"></i> Physics</a>
+            <a href="chemistry.htm"><i class="fas fa-flask"></i> Chemistry</a>
+            <a href="biology.htm" class="active"><i class="fas fa-dna"></i> Biology</a>
+            <a href="mathematics.htm"><i class="fas fa-square-root-alt"></i> Math</a>
+            <a href="model-questions.htm"><i class="fas fa-pencil-alt"></i> Model Qs</a>
+            <a href="team.htm"><i class="fas fa-user-md"></i> Team</a>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <i class="fas fa-dna"></i>
+            <div>
+                <h1>Biology</h1>
+                <div class="header-sub">Botany + Zoology · Class 11 & 12 · NEET / Medical Entrance</div>
+            </div>
+        </div>
+
+        <!-- Class Selector -->
+        <div class="class-selector">
+            <div class="class-card active" data-class="11">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>Class 11</h2>
+                <p>Botany + Zoology</p>
+            </div>
+            <div class="class-card" data-class="12">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>Class 12</h2>
+                <p>Botany + Zoology</p>
+            </div>
+        </div>
+
+        <!-- Syllabus Container - Class 11 (active by default) -->
+        <div id="syllabus-11" class="syllabus-container">
+            <!-- BOTANY Section - Class 11 -->
+            <div class="subject-section">
+                <div class="subject-badge"><i class="fas fa-leaf"></i> Botany (Theory) · 64 teaching hours</div>
+                
+                <!-- Unit 1.1 -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 1 – Biomolecules & Cell Biology <span style="margin-left: 1rem;">(15 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-microscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">1.1 Biomolecules: carbohydrates, proteins, lipids, nucleic acids, minerals, enzymes and water</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biomolecules - carbohydrates, proteins, lipids, nucleic acids, minerals, enzymes and water')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-microscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">1.2 Cell: prokaryotic/eukaryotic, cell wall, membrane, mitochondria, plastids, ER, Golgi, lysosomes, ribosomes, nucleus, chromosomes, cilia, flagella</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell structure and function - prokaryotic and eukaryotic cells, organelles detail')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-microscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">1.3 Cell division: amitosis, mitosis, meiosis</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell division - amitosis, mitosis, meiosis and their significance')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 2 - Floral Diversity (partial - continued in full code) -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 2 – Floral Diversity <span style="margin-left: 1rem;">(30 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.1 Introduction: Three domains of life, binomial nomenclature, five-kingdom classification</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Three domains of life, binomial nomenclature, five kingdom classification')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.2 Fungi: Phycomycetes, ascomycetes, basidiomycetes, deuteromycetes; Mucor, Yeast, Mushrooms</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Fungi classification, structure of Mucor and Yeast, economic importance')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.3 Lichen: General introduction, economic importance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Lichen characteristics and economic importance')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.4 Algae: Green, brown, red algae; Spirogyra structure & reproduction</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Algae types, Spirogyra structure and reproduction, economic importance')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.5 Bryophyta: Liverworts, hornworts, moss; Marchantia morphology & reproduction</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Bryophytes characteristics, Marchantia structure and reproduction')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.6 Pteridophyta: Dryopteris morphology & reproduction</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Pteridophytes characteristics, Dryopteris structure and reproduction')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.7 Gymnosperm: Pinus morphology & reproduction</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Gymnosperms characteristics, Pinus structure and reproduction')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.8 Angiosperm: Morphology, taxonomy, families – Brassicaceae, Fabaceae, Solanaceae, Liliaceae</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 16 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Angiosperm morphology, taxonomic hierarchy, Brassicaceae, Fabaceae, Solanaceae, Liliaceae families')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 3 - Microbiology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 3 – Introductory Microbiology <span style="margin-left: 1rem;">(5 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-bacteria"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.1 Monera: Bacterial structure, nutrition, growth; cyanobacteria</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Monera, bacteria structure and nutrition, cyanobacteria')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-virus"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.2 Virus: Structure, importance, bacteriophage</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Virus structure, bacteriophage, importance of viruses')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.3 Impacts of biotechnology in microbiology</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biotechnology applications in microbiology')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 4 - Ecology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 4 – Ecology <span style="margin-left: 1rem;">(11 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">4.1 Ecosystem ecology: Biotic/abiotic factors, food chain, web, pyramids, C/N cycles, succession</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 7 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecosystem ecology, food chain, trophic levels, carbon and nitrogen cycles')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">4.2 Ecological Adaptation: Hydrophytes and xerophytes</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecological adaptations in hydrophytes and xerophytes')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">4.3 Ecological Imbalances: Climate change, ozone depletion, acid rain</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Greenhouse effect, ozone layer depletion, acid rain, biological invasion')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 5 - Vegetation -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 5 – Vegetation <span style="margin-left: 1rem;">(3 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-plant-wilt"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">5.1 Vegetation types in Nepal, In-situ & Ex-situ conservation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Vegetation types of Nepal, protected areas, botanical gardens, seed banks')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-plant-wilt"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">5.2 Natural environment-vegetation and human activities</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Human activities impact on vegetation')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZOOLOGY Section - Class 11 -->
+            <div class="subject-section">
+                <div class="subject-badge"><i class="fas fa-dog"></i> Zoology (Theory) · 64 teaching hours</div>
+                
+                <!-- Unit 6 -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 6 – Introduction to Biology <span style="margin-left: 1rem;">(1 teaching hour)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-paw"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">6.1 Scope and fields of biology, relation with other sciences</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Scope of biology, branches, relation with other sciences')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 7 - Evolutionary Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 7 – Evolutionary Biology <span style="margin-left: 1rem;">(15 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.1 Origin of life: Oparin-Haldane theory, Miller-Urey experiment</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Oparin-Haldane theory, Miller-Urey experiment, origin of life')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.2 Evidences of evolution: Morphological, Anatomical, Paleontological, Embryological, Biochemical</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Evidences of evolution - morphological, anatomical, paleontological, embryological, biochemical')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.3 Theories of evolution: Lamarckism, Darwinism, Neo-Darwinism</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Lamarckism, Darwinism, Neo-Darwinism theories of evolution')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.4 Human evolution: Position of man, new/old world monkeys, apes vs man, evolution of modern man</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Human evolution, primate characteristics, differences between apes and man, stages of human evolution')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 8 - Faunal Diversity -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 8 – Faunal Diversity <span style="margin-left: 1rem;">(34 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-fish"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.1 Protista: Protozoa, Paramecium, Plasmodium vivax, life cycle of P. falciparum</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Protista, Protozoa classification, Paramecium structure, Plasmodium life cycle')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-fish"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.2 Animalia: Phyla Porifera to Chordata - diagnostic features, classification with examples</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal kingdom phyla characteristics, classification up to class with examples')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-fish"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.3 Earthworm (Pheretima posthuma): Digestive, excretory, nervous, reproductive systems, economic importance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Earthworm anatomy, digestive system, excretory system, nervous system, reproduction, economic importance')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-fish"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.4 Frog (Rana tigrina): Digestive, circulatory, respiratory, reproductive systems</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Frog anatomy, digestive system, blood vascular system, heart structure, respiration, reproduction')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 9 - Biota and Environment -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 9 – Biota and Environment <span style="margin-left: 1rem;">(10 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-paw"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.1 Animal adaptation: Aquatic, Terrestrial (cursorial, fossorial, arboreal), Volant</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal adaptations - aquatic, terrestrial, cursorial, fossorial, arboreal, volant')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-paw"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.2 Animal behavior: Reflex action, taxes, dominance, leadership, migration in fish and birds</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal behavior, reflex action, taxes, dominance, leadership, fish migration, bird migration')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-paw"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.3 Environmental Pollution: Air, water, soil pollution; pesticides effects</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Environmental pollution sources, effects, control measures, pesticides impact')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 10 - Conservation Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 10 – Conservation Biology <span style="margin-left: 1rem;">(4 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.1 Conservation Biology: Biodiversity, national parks, wildlife reserves, wetlands, Ramsar sites</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Biodiversity conservation, national parks, wildlife reserves, conservation areas, wetlands, Ramsar sites')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.2 Wildlife: Importance, extinction causes, conservation, IUCN categories, endangered species of Nepal</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Wildlife conservation, IUCN categories - extinct, endangered, vulnerable, rare, threatened species, endangered species of Nepal')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Syllabus Container - Class 12 (hidden initially) -->
+        <div id="syllabus-12" class="syllabus-container" style="display: none;">
+            <!-- BOTANY Section - Class 12 -->
+            <div class="subject-section">
+                <div class="subject-badge"><i class="fas fa-leaf"></i> Botany (Theory) · 64 teaching hours</div>
+                
+                <!-- Unit 1 - Plant Anatomy -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 1 – Plant Anatomy <span style="margin-left: 1rem;">(8 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">1.1 Plant tissues, anatomy of dicot and monocot root, stem, leaf; secondary growth in dicot stem</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant tissues, meristems, permanent tissues, anatomy of dicot and monocot root stem leaf, secondary growth')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 2 - Plant Physiology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 2 – Plant Physiology <span style="margin-left: 1rem;">(20 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.1 Water relation: Diffusion, osmosis, plasmolysis, ascent of sap, transpiration, guttation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Diffusion, osmosis, plasmolysis, ascent of sap, transpiration, guttation')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.2 Photosynthesis: Pigments, photochemical phase, Calvin cycle, C3 and C4 plants, photorespiration</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Photosynthesis mechanism, pigments, light reaction, Calvin cycle, C3 C4 plants, photorespiration, factors')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.3 Respiration: Glycolysis, Krebs cycle, ETS, factors affecting respiration</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Respiration types, glycolysis, Krebs cycle, electron transport system, factors affecting respiration')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.4 Plant hormones: Auxins, gibberellins, cytokinins - physiological effects</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant hormones, auxins, gibberellins, cytokinins, physiological effects')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-leaf"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.5 Plant growth: Seed germination, dormancy, photoperiodism, vernalization, senescence, movements</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Seed germination, dormancy, photoperiodism, vernalization, senescence, tropic and nastic movements')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 3 - Genetics -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 3 – Genetics <span style="margin-left: 1rem;">(21 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.1 Genetic Materials: DNA and RNA structure, replication, genetic code</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'DNA structure, RNA structure, DNA replication, genetic code')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.2 Mendelian genetics: Laws of inheritance, incomplete dominance, codominance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 6 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Mendel\'s laws, monohybrid cross, dihybrid cross, incomplete dominance, codominance, gene interactions')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.3 Linkage and crossing over: Types, sex-linked inheritance (color blindness, Drosophila eye color)</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Linkage types, crossing over, sex-linked inheritance, color blindness, Drosophila genetics')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.4 Mutation and polyploidy: Gene and chromosomal mutations, polyploidy origin and significance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Mutation types, gene mutation, chromosomal mutation, polyploidy origin and significance')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 4 - Embryology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 4 – Embryology <span style="margin-left: 1rem;">(8 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-seedling"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">4.1 Reproduction in angiosperms: Pollination, fertilization, gametophytes, embryo development, endosperm</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Sexual reproduction in angiosperms, pollination, fertilization, male and female gametophytes, embryo development, endosperm')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 5 - Biotechnology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 5 – Biotechnology <span style="margin-left: 1rem;">(7 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-flask"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">5.1 Tissue culture, plant breeding, GMOs, biofertilizers, biopesticides, food safety</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 7 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant tissue culture, plant breeding, GMOs, biofertilizers, biopesticides, genetic engineering, food safety')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZOOLOGY Section - Class 12 -->
+            <div class="subject-section">
+                <div class="subject-badge"><i class="fas fa-dog"></i> Zoology (Theory) · 64 teaching hours</div>
+                
+                <!-- Unit 6 - Animal Tissues -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 6 – Animal Tissues <span style="margin-left: 1rem;">(8 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-bone"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">6.1 Epithelial, connective, muscular, nervous tissues - structure, functions, location</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Animal tissues, epithelial tissue types, connective tissue, muscular tissue, nervous tissue')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 7 - Developmental Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 7 – Developmental Biology <span style="margin-left: 1rem;">(6 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-egg"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.1 Gametogenesis: Spermatogenesis and Oogenesis</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Spermatogenesis, Oogenesis, gamete formation')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-egg"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.2 Development of frog: Fertilization, cleavage, blastulation, gastrulation, organogenesis</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Frog development, fertilization, cleavage, morula, blastula, gastrula, notochord formation, nerve cord, coelom')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 8 - Human Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 8 – Human Biology <span style="margin-left: 1rem;">(28 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.1 Digestive system: Alimentary canal, digestive glands, physiology of digestion</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human digestive system, alimentary canal, digestive glands, digestion process')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.2 Respiratory System: Organs, gas exchange, transport, regulation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human respiratory system, organs, mechanism of breathing, gas exchange, transport of gases')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.3 Circulatory System: Heart structure, cardiac cycle, blood vessels, blood grouping, BP</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human circulatory system, heart structure, cardiac cycle, cardiac output, arteries, veins, blood groups, blood pressure')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.4 Excretory System: Modes of excretion, urine formation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Excretion modes, ammonotelism, ureotelism, uricotelism, kidney, urine formation')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.5 Nervous system: CNS, PNS, ANS, brain structure, nerve impulse</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Nervous system types, brain structure and function, nerve impulse conduction')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.6 Sense organs: Structure and functions of eye and ear</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Eye structure and function, ear structure and function')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.7 Endocrinology: Endocrine glands, hormones, hypo/hyperactivity disorders</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 9 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Endocrine system, hypothalamus, pituitary, pineal, thyroid, parathyroid, adrenal, pancreas, gonads, hormone disorders')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.8 Reproductive System: Male and female reproductive organs, ovarian and menstrual cycle</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Male reproductive system, female reproductive system, ovarian cycle, menstrual cycle')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 9 - Human Population and Health Disorders -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 9 – Human Population and Health Disorders <span style="margin-left: 1rem;">(6 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-users"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.1 Human Population: Growth problems, control strategies, demographic cycle</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human population growth, demographic cycle, population control')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-users"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.2 Health disorders: Cardiovascular, respiratory, renal disorders; substance abuse</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Cardiovascular disorders, respiratory disorders, renal disorders, drug abuse, alcohol abuse, smoking')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unit 10 - Applied Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 10 – Applied Biology <span style="margin-left: 1rem;">(16 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-flask"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.1 Application of Zoology: Organ transplant, IVF, amniocentesis, GMOs, poultry, fish farming</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 6 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Tissue and organ transplantation, IVF, amniocentesis, transgenic animals, poultry farming, fish farming')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                            <li class="topic-item">
+                                <i class="fas fa-flask"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.2 Microbial diseases: Typhoid, TB, HIV, cholera, influenza, hepatitis, candidiasis; immunology, industrial microbiology</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Microbial diseases, typhoid, tuberculosis, HIV, cholera, influenza, hepatitis, candidiasis, vaccines, dairy microbiology, sewage treatment')">
+                                    <i class="fas fa-robot"></i> Generate
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== QUIZ MODAL ===== -->
+    <div id="quizOverlay" class="quiz-overlay">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h2 id="quizTopicTitle">Generating Questions...</h2>
+                <button class="close-quiz" onclick="closeQuiz()">&times;</button>
+            </div>
+            <div id="quizLoading" class="loading">
+                <i class="fas fa-circle-notch"></i>
+                <p style="margin-top: 1rem; font-size: 1.2rem;">Gemini is creating your questions...</p>
+            </div>
+            <div id="quizQuestions" style="display: none;"></div>
+            <div id="quizActions" style="display: none;" class="quiz-actions">
+                <button class="submit-btn" onclick="submitQuiz()"><i class="fas fa-check-circle"></i> Submit Test</button>
+                <button class="cancel-btn" onclick="closeQuiz()"><i class="fas fa-times-circle"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RESULT MODAL ===== -->
+    <div id="resultOverlay" class="result-overlay">
+        <div class="result-card">
+            <i class="fas fa-star" style="font-size: 4rem; color: #f7c35c;"></i>
+            <h2>Your Score</h2>
+            <div class="score-circle">
+                <span id="scoreDisplay">0/20</span>
+            </div>
+            <div id="resultMessage" class="result-message"></div>
+            <div id="resultFeedback" class="result-feedback"></div>
+            <button class="close-result" onclick="closeResult()">Practice More</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>⩺ MedPrep · master biology with AI-powered questions ⩺</p>
+        <p style="margin-top: 1rem;">© 2026 · for future doctors</p>
+    </footer>
+
+    <script>
+        // ---------- GEMINI API CONFIGURATION ----------
+        // IMPORTANT: Replace with your actual Gemini API key
+        const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; // Get from https://makersuite.google.com/app/apikey
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+
+        // Current quiz data
+        let currentQuestions = [];
+        let currentTopic = "";
+        let selectedAnswers = [];
+
+        // ---------- CLASS SELECTOR TOGGLE ----------
+        document.querySelectorAll('.class-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+
+                const classNum = this.dataset.class;
+                if (classNum === '11') {
+                    document.getElementById('syllabus-11').style.display = 'block';
+                    document.getElementById('syllabus-12').style.display = 'none';
+                } else {
+                    document.getElementById('syllabus-11').style.display = 'none';
+                    document.getElementById('syllabus-12').style.display = 'block';
+                }
+            });
+        });
+
+        // ---------- TOGGLE UNIT EXPAND/COLLAPSE ----------
+        window.toggleUnit = function(headerElement) {
+            const unitCard = headerElement.closest('.unit-card');
+            unitCard.classList.toggle('expanded');
+        };
+
+        // ---------- GENERATE QUIZ WITH GEMINI ----------
+        window.generateQuiz = async function(subject, topic) {
+            currentTopic = `${subject} - ${topic}`;
+            document.getElementById('quizTopicTitle').innerText = `Quiz: ${topic.substring(0, 50)}...`;
+            document.getElementById('quizOverlay').style.display = 'flex';
+            document.getElementById('quizLoading').style.display = 'block';
+            document.getElementById('quizQuestions').style.display = 'none';
+            document.getElementById('quizActions').style.display = 'none';
+
+            try {
+                const prompt = `Generate 20 multiple choice questions for medical entrance exam preparation on the topic: "${topic}" for ${subject}. 
+                Each question should have 4 options (A, B, C, D) with only one correct answer.
+                Format the response as a JSON array with objects containing:
+                - "question": the question text
+                - "options": array of 4 strings
+                - "correct": index of correct answer (0-3)
+                Make the questions challenging and appropriate for medical entrance exams.
+                Return ONLY the JSON array, no other text.`;
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                const textResponse = data.candidates[0].content.parts[0].text;
+                
+                // Extract JSON from response (handle possible markdown formatting)
+                const jsonMatch = textResponse.match(/\[[\s\S]*\]/);
+                if (jsonMatch) {
+                    currentQuestions = JSON.parse(jsonMatch[0]);
+                } else {
+                    throw new Error("Invalid response format");
+                }
+
+                // Ensure we have 20 questions
+                if (currentQuestions.length !== 20) {
+                    // Pad or trim as needed
+                    while (currentQuestions.length < 20) {
+                        currentQuestions.push({
+                            question: "Sample question?",
+                            options: ["Option A", "Option B", "Option C", "Option D"],
+                            correct: 0
+                        });
+                    }
+                    currentQuestions = currentQuestions.slice(0, 20);
+                }
+
+                displayQuestions();
+
+            } catch (error) {
+                console.error("Error generating quiz:", error);
+                // Fallback to sample questions if API fails
+                currentQuestions = generateSampleQuestions(topic);
+                displayQuestions();
+            }
+        };
+
+        // ---------- DISPLAY QUESTIONS ----------
+        function displayQuestions() {
+            selectedAnswers = new Array(20).fill(null);
+            const questionsHtml = currentQuestions.map((q, idx) => `
+                <div class="question-item">
+                    <div class="question-text">${idx + 1}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIdx) => `
+                            <label class="option ${selectedAnswers[idx] === optIdx ? 'selected' : ''}">
+                                <input type="radio" name="q${idx}" value="${optIdx}" onchange="selectAnswer(${idx}, ${optIdx})">
+                                ${String.fromCharCode(65 + optIdx)}. ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('quizQuestions').innerHTML = questionsHtml;
+            document.getElementById('quizLoading').style.display = 'none';
+            document.getElementById('quizQuestions').style.display = 'block';
+            document.getElementById('quizActions').style.display = 'flex';
+        }
+
+        // ---------- SELECT ANSWER ----------
+        window.selectAnswer = function(questionIdx, optionIdx) {
+            selectedAnswers[questionIdx] = optionIdx;
+            // Update visual selection
+            document.querySelectorAll(`input[name="q${questionIdx}"]`).forEach((radio, idx) => {
+                const label = radio.closest('.option');
+                if (idx === optionIdx) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        };
+
+        // ---------- SUBMIT QUIZ ----------
+        window.submitQuiz = function() {
+            // Check if all questions answered
+            const unanswered = selectedAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                alert(`Please answer all questions. ${unanswered} question(s) remaining.`);
+                return;
+            }
+
+            // Calculate score
+            let correct = 0;
+            currentQuestions.forEach((q, idx) => {
+                if (selectedAnswers[idx] === q.correct) {
+                    correct++;
+                }
+            });
+
+            // Display result
+            document.getElementById('scoreDisplay').innerText = `${correct}/20`;
+            
+            let message = "";
+            let feedback = "";
+            if (correct < 10) {
+                message = "📚 Practice More!";
+                feedback = "Keep working hard. Review the topics and try again.";
+            } else if (correct >= 10 && correct < 16) {
+                message = "👍 Good!";
+                feedback = "You're on the right track. A little more practice will make you excellent.";
+            } else {
+                message = "🌟 Excellent!";
+                feedback = "Outstanding performance! You've mastered this topic.";
+            }
+            
+            document.getElementById('resultMessage').innerText = message;
+            document.getElementById('resultFeedback').innerText = feedback;
+            
+            // Close quiz and show result
+            document.getElementById('quizOverlay').style.display = 'none';
+            document.getElementById('resultOverlay').style.display = 'flex';
+        };
+
+        // ---------- CLOSE QUIZ ----------
+        window.closeQuiz = function() {
+            document.getElementById('quizOverlay').style.display = 'none';
+        };
+
+        // ---------- CLOSE RESULT ----------
+        window.closeResult = function() {
+            document.getElementById('resultOverlay').style.display = 'none';
+        };
+
+        // ---------- SAMPLE QUESTIONS (FALLBACK) ----------
+        function generateSampleQuestions(topic) {
+            const questions = [];
+            for (let i = 0; i < 20; i++) {
+                questions.push({
+                    question: `Sample question ${i + 1} about ${topic.substring(0, 30)}?`,
+                    options: [
+                        "First option is correct",
+                        "Second option is incorrect",
+                        "Third option is incorrect", 
+                        "Fourth option is incorrect"
+                    ],
+                    correct: 0
+                });
+            }
+            return questions;
+        }
+    </script>
+</body>
+</html>
