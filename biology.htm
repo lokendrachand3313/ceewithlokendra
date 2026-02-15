@@ -9,7 +9,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* (Same CSS as before - keeping it identical for consistency) */
         * {
             margin: 0;
             padding: 0;
@@ -249,7 +248,7 @@
         }
 
         .unit-card.expanded .unit-content {
-            max-height: 2000px;
+            max-height: 3000px;
             transition: max-height 0.6s ease-in;
             margin-top: 1.5rem;
         }
@@ -271,6 +270,7 @@
             border-radius: 50px;
             border: 1px solid #bee2ea;
             transition: 0.2s;
+            flex-wrap: wrap;
         }
 
         .topic-item:hover {
@@ -286,6 +286,7 @@
 
         .topic-info {
             flex: 1;
+            min-width: 250px;
         }
 
         .topic-name {
@@ -315,6 +316,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
+            white-space: nowrap;
         }
 
         .generate-btn:hover {
@@ -577,7 +579,7 @@
             <i class="fas fa-dna"></i>
             <div>
                 <h1>Biology</h1>
-                <div class="header-sub">Botany + Zoology · Class 11 & 12 · NEET / Medical Entrance</div>
+                <div class="header-sub">Botany + Zoology · Class 11 & 12 · NEB Curriculum</div>
             </div>
         </div>
 
@@ -595,47 +597,50 @@
             </div>
         </div>
 
-        <!-- Syllabus Container - Class 11 (active by default) -->
+        <!-- ===== CLASS 11 SYLLABUS ===== -->
         <div id="syllabus-11" class="syllabus-container">
-            <!-- BOTANY Section - Class 11 -->
+            <!-- ===== BOTANY SECTION - CLASS 11 ===== -->
             <div class="subject-section">
                 <div class="subject-badge"><i class="fas fa-leaf"></i> Botany (Theory) · 64 teaching hours</div>
                 
-                <!-- Unit 1.1 -->
+                <!-- UNIT 1: Biomolecules & Cell Biology -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 1 – Biomolecules & Cell Biology <span style="margin-left: 1rem;">(15 teaching hours)</span></h3>
+                        <h3>Unit 1 – Biomolecules & Cell Biology <span>(15 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 1.1 Biomolecules -->
                             <li class="topic-item">
-                                <i class="fas fa-microscope"></i>
+                                <i class="fas fa-dna"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">1.1 Biomolecules: carbohydrates, proteins, lipids, nucleic acids, minerals, enzymes and water</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biomolecules - carbohydrates, proteins, lipids, nucleic acids, minerals, enzymes and water')">
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biomolecules - carbohydrates, monosaccharides, glucose, fructose, galactose, disaccharides, sucrose, maltose, lactose, polysaccharides, starch, glycogen, cellulose, proteins, amino acids, peptide bond, primary structure, secondary structure, tertiary structure, quaternary structure, enzymes, lipids, triglycerides, phospholipids, steroids, nucleic acids, DNA, RNA, nucleotides, minerals, macro-nutrients, micro-nutrients, water properties, cohesion, adhesion, specific heat')">
                                     <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 1.2 Cell Structure -->
                             <li class="topic-item">
                                 <i class="fas fa-microscope"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">1.2 Cell: prokaryotic/eukaryotic, cell wall, membrane, mitochondria, plastids, ER, Golgi, lysosomes, ribosomes, nucleus, chromosomes, cilia, flagella</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell structure and function - prokaryotic and eukaryotic cells, cell wall, cell membrane, mitochondria, plastids, endoplasmic reticulum, Golgi bodies, lysosomes, ribosomes, nucleus, chromosomes, cilia, flagella')">
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell theory, prokaryotic cell, eukaryotic cell, differences, cell wall, cellulose, hemicellulose, lignin, cell membrane, fluid mosaic model, phospholipid bilayer, proteins, mitochondria, cristae, matrix, powerhouse of cell, plastids, chloroplast, chromoplast, leucoplast, endoplasmic reticulum, RER, SER, Golgi apparatus, cisternae, lysosomes, hydrolytic enzymes, ribosomes, 70S, 80S, nucleus, nuclear envelope, nucleolus, chromatin, chromosomes, chromatids, centromere, cilia, flagella, 9+2 arrangement')">
                                     <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 1.3 Cell Division -->
                             <li class="topic-item">
-                                <i class="fas fa-microscope"></i>
+                                <i class="fas fa-divide"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">1.3 Cell division: amitosis, mitosis, meiosis</div>
+                                    <div class="topic-name">1.3 Cell division: amitosis, mitosis, meiosis and significances</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell division - amitosis, mitosis, meiosis and their significance')">
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Cell cycle, interphase, G1 phase, S phase, G2 phase, amitosis, mitosis, prophase, metaphase, anaphase, telophase, cytokinesis, significance of mitosis, meiosis, meiosis I, meiosis II, prophase I, leptotene, zygotene, pachytene, diplotene, diakinesis, crossing over, synapsis, bivalent, chiasmata, metaphase I, anaphase I, telophase I, significance of meiosis, genetic variation')">
                                     <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
@@ -643,208 +648,224 @@
                     </div>
                 </div>
 
-                <!-- Unit 2 - Floral Diversity -->
+                <!-- UNIT 2: Floral Diversity -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 2 – Floral Diversity <span style="margin-left: 1rem;">(30 teaching hours)</span></h3>
+                        <h3>Unit 2 – Floral Diversity <span>(30 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 2.1 Introduction -->
                             <li class="topic-item">
                                 <i class="fas fa-leaf"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">2.1 Introduction: Three domains of life, binomial nomenclature, five-kingdom classification</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Three domains of life, binomial nomenclature, five kingdom classification system by Whittaker')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Three domains of life, Archaea, Bacteria, Eukarya, binomial nomenclature, Carolus Linnaeus, genus, species, five kingdom classification, R.H. Whittaker, Monera, Protista, Fungi, Plantae, Animalia, criteria for classification')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.2 Fungi -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-mushroom"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">2.2 Fungi: Phycomycetes, ascomycetes, basidiomycetes, deuteromycetes; Mucor, Yeast, Mushrooms</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Fungi classification, characteristics of phycomycetes, ascomycetes, basidiomycetes, deuteromycetes, structure of Mucor, structure of Yeast, mushroom types, economic importance of fungi')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Fungi characteristics, mycelium, hyphae, septate, aseptate, coenocytic, phycomycetes, Rhizopus, Mucor, sporangiophore, sporangium, ascomycetes, sac fungi, Yeast, Saccharomyces cerevisiae, budding, ascospores, basidiomycetes, club fungi, Mushrooms, Agaricus, basidiospores, basidium, deuteromycetes, imperfect fungi, economic importance of fungi, penicillin, antibiotics')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.3 Lichen -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-tree"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.3 Lichen: General introduction, economic importance</div>
+                                    <div class="topic-name">2.3 Lichen: General introduction, characteristic features and economic importance</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Lichen characteristics, types of lichen, symbiotic relationship, economic importance of lichen')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Lichen, symbiotic relationship, fungus, algae, phycobiont, mycobiont, crustose, foliose, fruticose, economic importance of lichen, pollution indicators, pioneer species, food for animals, dyes, perfumes')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.4 Algae -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-water"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.4 Algae: Green, brown, red algae; Spirogyra structure & reproduction</div>
+                                    <div class="topic-name">2.4 Algae: Green, brown, red algae; Spirogyra structure & reproduction, economic importance</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Algae characteristics, green algae, brown algae, red algae, Spirogyra structure, Spirogyra reproduction, economic importance of algae')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Algae characteristics, green algae, Chlorophyceae, Chlamydomonas, Spirogyra, Ulothrix, brown algae, Phaeophyceae, Fucus, Sargassum, red algae, Rhodophyceae, Polysiphonia, Spirogyra structure, spiral chloroplast, pyrenoid, conjugation, scalariform conjugation, lateral conjugation, economic importance of algae, agar, carrageenan, biofertilizers')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.5 Bryophyta -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-seedling"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">2.5 Bryophyta: Liverworts, hornworts, moss; Marchantia morphology & reproduction</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Bryophytes characteristics, liverworts, hornworts, mosses, Marchantia structure, Marchantia reproduction, economic importance of bryophytes')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Bryophytes, amphibians of plant kingdom, liverworts, Marchantia, thallus, gemmae, hornworts, Anthoceros, mosses, Funaria, Sphagnum, peat moss, Marchantia structure, rhizoids, scales, antheridiophore, archegoniophore, sexual reproduction, sporophyte, economic importance of bryophytes')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.6 Pteridophyta -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-fern"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.6 Pteridophyta: Dryopteris morphology & reproduction</div>
+                                    <div class="topic-name">2.6 Pteridophyta: Dryopteris morphology & reproduction, economic importance</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Pteridophytes characteristics, Dryopteris structure, Dryopteris reproduction, economic importance of pteridophytes')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Pteridophytes, first vascular plants, Dryopteris, fern, rhizome, fronds, pinnules, sori, sporangia, spores, prothallus, antheridia, archegonia, fertilization, sporophyte, economic importance of pteridophytes, ornamentals, medicinal uses')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.7 Gymnosperm -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-tree"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.7 Gymnosperm: Pinus morphology & reproduction</div>
+                                    <div class="topic-name">2.7 Gymnosperm: Pinus morphology & reproduction, economic importance</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Gymnosperms characteristics, Pinus structure, Pinus reproduction, economic importance of gymnosperms')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Gymnosperms, naked seeded plants, Pinus, pine, morphology, long shoot, dwarf shoot, needles, male cone, microsporophyll, microsporangium, microspores, pollen grains, female cone, megasporophyll, ovule, pollination, fertilization, economic importance of gymnosperms, timber, resin, turpentine')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.8 Angiosperm -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-flower"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">2.8 Angiosperm: Morphology, taxonomy, families – Brassicaceae, Fabaceae, Solanaceae, Liliaceae</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 16 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Angiosperm morphology, root, stem, leaves, inflorescence, flower, fruit, taxonomic hierarchy, artificial natural phylogenetic classification, Brassicaceae family characteristics, Fabaceae family, Solanaceae family, Liliaceae family, economic importance')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Angiosperms, flowering plants, morphology, root, stem, leaf, inflorescence, flower, fruit, seed, taxonomy, artificial classification, natural classification, phylogenetic classification, taxonomic hierarchy, Brassicaceae, Cruciferae, mustard, floral formula, floral diagram, Fabaceae, Leguminosae, pea, Solanaceae, potato, tomato, Liliaceae, lily, economic importance')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Unit 3 - Microbiology -->
+                <!-- UNIT 3: Introductory Microbiology -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 3 – Introductory Microbiology <span style="margin-left: 1rem;">(5 teaching hours)</span></h3>
+                        <h3>Unit 3 – Introductory Microbiology <span>(5 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 3.1 Monera -->
                             <li class="topic-item">
                                 <i class="fas fa-bacteria"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">3.1 Monera: Bacterial structure, nutrition, growth; cyanobacteria</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Monera characteristics, bacteria cell structure, gram positive negative bacteria, bacterial nutrition, bacterial growth curve, cyanobacteria blue green algae')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Monera, bacteria, prokaryotes, cell wall, peptidoglycan, capsule, flagella, pili, plasmid, nutrition in bacteria, autotrophic, heterotrophic, saprophytic, parasitic, bacterial growth, growth curve, lag phase, log phase, stationary phase, death phase, cyanobacteria, blue-green algae, Nostoc, Anabaena, nitrogen fixation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 3.2 Virus -->
                             <li class="topic-item">
                                 <i class="fas fa-virus"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">3.2 Virus: Structure, importance, bacteriophage</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Virus structure, DNA viruses, RNA viruses, bacteriophage structure, lytic cycle, lysogenic cycle, importance of viruses')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Virus, virion, capsid, nucleocapsid, envelope, DNA virus, RNA virus, bacteriophage, T2 phage, T4 phage, lytic cycle, lysogenic cycle, importance of viruses, diseases, tobacco mosaic virus, TMV, influenza, HIV, COVID-19')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 3.3 Biotechnology impacts -->
                             <li class="topic-item">
-                                <i class="fas fa-dna"></i>
+                                <i class="fas fa-flask"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">3.3 Impacts of biotechnology in microbiology</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biotechnology applications in microbiology, industrial microbiology, antibiotic production, vaccine development')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Biotechnology in microbiology, industrial microbiology, antibiotics, penicillin, streptomycin, vaccines, fermentation, alcohol production, yogurt, cheese, single cell protein, SCP, biofertilizers, biopesticides, genetically modified organisms, GMOs')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Unit 4 - Ecology -->
+                <!-- UNIT 4: Ecology -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 4 – Ecology <span style="margin-left: 1rem;">(11 teaching hours)</span></h3>
+                        <h3>Unit 4 – Ecology <span>(11 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 4.1 Ecosystem ecology -->
                             <li class="topic-item">
                                 <i class="fas fa-tree"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">4.1 Ecosystem ecology: Biotic/abiotic factors, food chain, web, pyramids, C/N cycles, succession</div>
+                                    <div class="topic-name">4.1 Ecosystem ecology: Biotic/abiotic factors, pond and forest ecosystem, food chain, food web, trophic level, ecological pyramids, productivity, carbon and nitrogen cycles, succession</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 7 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecosystem ecology, biotic factors, abiotic factors, species interactions, pond ecosystem, forest ecosystem, food chain, food web, trophic levels, ecological pyramids, productivity, carbon cycle, nitrogen cycle, ecological succession')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecology, ecosystem, biotic factors, abiotic factors, species interactions, pond ecosystem, forest ecosystem, producers, consumers, decomposers, food chain, grazing food chain, detritus food chain, food web, trophic level, ecological pyramids, pyramid of numbers, pyramid of biomass, pyramid of energy, productivity, primary productivity, secondary productivity, biogeochemical cycle, carbon cycle, nitrogen cycle, ecological succession')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 4.2 Ecological Adaptation -->
                             <li class="topic-item">
-                                <i class="fas fa-tree"></i>
+                                <i class="fas fa-leaf"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">4.2 Ecological Adaptation: Hydrophytes and xerophytes</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecological adaptations, hydrophytes adaptations, xerophytes adaptations, morphological adaptations, anatomical adaptations')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Ecological adaptation, hydrophytes, aquatic plants, morphological adaptations, anatomical adaptations, examples, Hydrilla, Vallisneria, xerophytes, desert plants, morphological adaptations, anatomical adaptations, physiological adaptations, examples, cactus, Opuntia')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 4.3 Ecological Imbalances -->
                             <li class="topic-item">
-                                <i class="fas fa-tree"></i>
+                                <i class="fas fa-globe"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">4.3 Ecological Imbalances: Climate change, ozone depletion, acid rain</div>
+                                    <div class="topic-name">4.3 Ecological Imbalances: Greenhouse effect, climate change, ozone depletion, acid rain, biological invasion</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Greenhouse effect, climate change, ozone layer depletion, acid rain causes and effects, biological invasion')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Greenhouse effect, greenhouse gases, CO2, methane, global warming, climate change, ozone layer depletion, CFCs, ozone hole, acid rain, SO2, NO2, biological invasion, exotic species, invasive species, impact on ecosystem')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Unit 5 - Vegetation -->
+                <!-- UNIT 5: Vegetation -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 5 – Vegetation <span style="margin-left: 1rem;">(3 teaching hours)</span></h3>
+                        <h3>Unit 5 – Vegetation <span>(3 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 5.1 Vegetation types -->
                             <li class="topic-item">
-                                <i class="fas fa-plant-wilt"></i>
+                                <i class="fas fa-mountain"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">5.1 Vegetation types in Nepal, In-situ & Ex-situ conservation</div>
+                                    <div class="topic-name">5.1 Vegetation types in Nepal, In-situ and Ex-situ conservation</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Vegetation types of Nepal, tropical forest, temperate forest, alpine vegetation, in-situ conservation, protected areas, national parks, wildlife reserves, ex-situ conservation, botanical gardens, seed banks')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Vegetation of Nepal, tropical forest, subtropical forest, temperate forest, alpine vegetation, in-situ conservation, protected areas, national parks, wildlife reserves, conservation areas, Chitwan National Park, Sagarmatha National Park, ex-situ conservation, botanical gardens, seed banks, gene banks')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 5.2 Human activities -->
                             <li class="topic-item">
-                                <i class="fas fa-plant-wilt"></i>
+                                <i class="fas fa-users"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">5.2 Natural environment-vegetation and human activities</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Human activities impact on vegetation, deforestation, afforestation, conservation efforts')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Botany', 'Human impact on vegetation, deforestation, afforestation, reforestation, urbanization, agriculture, shifting cultivation, conservation efforts, sustainable development')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
@@ -852,45 +873,235 @@
                 </div>
             </div>
 
-            <!-- ZOOLOGY Section - Class 11 (partial to save space - but complete in actual file) -->
+            <!-- ===== ZOOLOGY SECTION - CLASS 11 ===== -->
             <div class="subject-section">
-                <div class="subject-badge"><i class="fas fa-dog"></i> Zoology (Theory) · 64 teaching hours</div>
+                <div class="subject-badge"><i class="fas fa-paw"></i> Zoology (Theory) · 64 teaching hours</div>
                 
-                <!-- Unit 6 -->
+                <!-- UNIT 6: Introduction to Biology -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 6 – Introduction to Biology <span style="margin-left: 1rem;">(1 teaching hour)</span></h3>
+                        <h3>Unit 6 – Introduction to Biology <span>(1 teaching hour)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
                             <li class="topic-item">
-                                <i class="fas fa-paw"></i>
+                                <i class="fas fa-book"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">6.1 Scope and fields of biology, relation with other sciences</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 1 hour</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Scope of biology, branches of biology, botany, zoology, microbiology, biotechnology, relation with other sciences')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Biology scope, branches of biology, botany, zoology, microbiology, biotechnology, genetics, molecular biology, ecology, relation with chemistry, biochemistry, relation with physics, biophysics, relation with medicine, agriculture')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- More zoology units would be here (I'm truncating for brevity) -->
+                <!-- UNIT 7: Evolutionary Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 7 – Evolutionary Biology <span>(15 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 7.1 Origin of life -->
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.1 Life and its Origin: Oparin-Haldane theory, Miller and Urey's experiment</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Origin of life, Oparin-Haldane theory, primordial soup, coacervates, Miller-Urey experiment, apparatus, methane, ammonia, hydrogen, water vapor, amino acids, organic molecules, chemical evolution')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 7.2 Evidences of evolution -->
+                            <li class="topic-item">
+                                <i class="fas fa-bone"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.2 Evidences of evolution: Morphological, Anatomical, Paleontological, Embryological and Biochemical</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Evidences of evolution, morphological evidence, homologous organs, analogous organs, vestigial organs, anatomical evidence, comparative anatomy, paleontological evidence, fossils, fossil dating, radiocarbon dating, embryological evidence, recapitulation theory, Haeckel, biochemical evidence, DNA similarity, protein similarity, cytochrome c')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 7.3 Theories of evolution -->
+                            <li class="topic-item">
+                                <i class="fas fa-darwin"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.3 Theories of evolution: Lamarckism, Darwinism & concept of Neo Darwinism</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Lamarckism, Jean-Baptiste Lamarck, theory of inheritance of acquired characters, use and disuse, examples, Darwinism, Charles Darwin, natural selection, variation, struggle for existence, survival of the fittest, Neo-Darwinism, modern synthetic theory, mutation, genetic drift, gene flow, reproductive isolation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 7.4 Human evolution -->
+                            <li class="topic-item">
+                                <i class="fas fa-child"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.4 Human evolution: Position of man, new/old world monkeys, apes vs man, evolution of modern man</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Human evolution, primates, new world monkeys, old world monkeys, apes, gibbon, orangutan, gorilla, chimpanzee, differences between apes and man, hominids, Australopithecus, Homo habilis, Homo erectus, Neanderthal, Cro-Magnon, Homo sapiens')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 8: Faunal Diversity -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 8 – Faunal Diversity <span>(34 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 8.1 Protista -->
+                            <li class="topic-item">
+                                <i class="fas fa-microscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.1 Protista: Protozoa, Paramecium, Plasmodium vivax, life cycle of P. falciparum</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Protista, protozoa, Paramecium, structure, cilia, oral groove, macronucleus, micronucleus, contractile vacuole, reproduction, binary fission, conjugation, Plasmodium vivax, malaria, life cycle, sporozoite, merozoite, gametocyte, mosquito vector, P. falciparum, malignant malaria, economic importance')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.2 Animalia classification -->
+                            <li class="topic-item">
+                                <i class="fas fa-fish"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.2 Animalia: Phyla Porifera to Chordata - diagnostic features, classification with examples</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal kingdom, Porifera, sponges, Sycon, Euspongia, Cnidaria, Coelenterata, Hydra, Aurelia, Platyhelminthes, flatworms, Taenia, Fasciola, Aschelminthes, Nemathelminthes, roundworms, Ascaris, Annelida, earthworm, leech, Arthropoda, insects, crustaceans, Mollusca, snails, octopus, Echinodermata, starfish, Chordata, vertebrates, fishes, amphibians, reptiles, birds, mammals')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.3 Earthworm -->
+                            <li class="topic-item">
+                                <i class="fas fa-worm"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.3 Earthworm (Pheretima posthuma): Digestive, excretory, nervous, reproductive systems, economic importance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Earthworm, Pheretima posthuma, habitat, external features, clitellum, digestive system, alimentary canal, pharynx, gizzard, intestine, typhlosole, physiology of digestion, excretory system, nephridia, septal nephridia, integumentary nephridia, pharyngeal nephridia, nervous system, brain, nerve cord, reproductive system, hermaphrodite, male organs, female organs, copulation, cocoon formation, economic importance, vermicomposting')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.4 Frog -->
+                            <li class="topic-item">
+                                <i class="fas fa-frog"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.4 Frog (Rana tigrina): Digestive, circulatory, respiratory, reproductive systems</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Frog, Rana tigrina, habitat, external features, digestive system, alimentary canal, stomach, liver, pancreas, physiology of digestion, blood vascular system, heart, chambers, sinus venosus, conus arteriosus, working mechanism, respiratory system, cutaneous respiration, buccal respiration, pulmonary respiration, reproductive system, male reproductive organs, female reproductive organs')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 9: Biota and Environment -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 9 – Biota and Environment <span>(10 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 9.1 Animal adaptation -->
+                            <li class="topic-item">
+                                <i class="fas fa-camel"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.1 Animal adaptation: Aquatic, Terrestrial (cursorial, fossorial, arboreal), Volant</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal adaptation, aquatic adaptation, fish, whales, terrestrial adaptation, cursorial adaptation, running animals, horse, deer, fossorial adaptation, burrowing animals, mole, rabbit, arboreal adaptation, tree-dwelling, monkey, squirrel, volant adaptation, flying animals, birds, bats')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 9.2 Animal behavior -->
+                            <li class="topic-item">
+                                <i class="fas fa-dove"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.2 Animal behavior: Reflex action, taxes, dominance, leadership, fish and bird migration</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Animal behavior, reflex action, innate behavior, conditioned reflex, taxes, taxis, phototaxis, chemotaxis, dominance hierarchy, leadership in animals, fish migration, salmon, eel, bird migration, arctic tern, reasons for migration')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 9.3 Environmental Pollution -->
+                            <li class="topic-item">
+                                <i class="fas fa-industry"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.3 Environmental Pollution: Air, water, soil pollution; pesticides effects</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Environmental pollution, air pollution, sources, effects, control, water pollution, sources, effects, control, soil pollution, sources, effects, control, pesticides, DDT, bioaccumulation, biomagnification, effects on ecosystem')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 10: Conservation Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 10 – Conservation Biology <span>(4 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 10.1 Conservation Biology -->
+                            <li class="topic-item">
+                                <i class="fas fa-tree"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.1 Conservation Biology: Biodiversity conservation, national parks, wildlife reserves, conservation areas, wetlands, Ramsar sites</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Biodiversity conservation, national parks, Chitwan National Park, Bardia National Park, wildlife reserves, Suklaphanta, Koshi Tappu, conservation areas, Annapurna, Manaslu, wetlands, Ramsar sites, Ghodaghodi, Jagdishpur, significance of wetlands')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 10.2 Wildlife -->
+                            <li class="topic-item">
+                                <i class="fas fa-paw"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.2 Wildlife: Importance, causes of extinction, conservation strategies, IUCN categories, endangered species of Nepal</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 11 Zoology', 'Wildlife importance, causes of extinction, habitat loss, poaching, climate change, conservation strategies, protected areas, anti-poaching, breeding programs, IUCN categories, extinct, endangered, vulnerable, rare, threatened, endangered species of Nepal, Bengal tiger, one-horned rhinoceros, snow leopard, red panda')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Class 12 Syllabus (similar structure with detailed prompts) -->
+        <!-- ===== CLASS 12 SYLLABUS ===== -->
         <div id="syllabus-12" class="syllabus-container" style="display: none;">
-            <!-- Class 12 Botany - Unit 1 -->
+            <!-- ===== BOTANY SECTION - CLASS 12 ===== -->
             <div class="subject-section">
                 <div class="subject-badge"><i class="fas fa-leaf"></i> Botany (Theory) · 64 teaching hours</div>
                 
+                <!-- UNIT 1: Plant Anatomy -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 1 – Plant Anatomy <span style="margin-left: 1rem;">(8 teaching hours)</span></h3>
+                        <h3>Unit 1 – Plant Anatomy <span>(8 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
@@ -898,52 +1109,407 @@
                             <li class="topic-item">
                                 <i class="fas fa-leaf"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">1.1 Plant tissues, anatomy of dicot and monocot root, stem, leaf; secondary growth in dicot stem</div>
+                                    <div class="topic-name">1.1 Plant anatomy: tissues, meristems, permanent tissues, anatomy of dicot and monocot root, stem, leaf, secondary growth in dicot stem</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant anatomy, meristems, apical meristem, lateral meristem, intercalary meristem, permanent tissues, simple tissues, complex tissues, dicot root anatomy, monocot root anatomy, dicot stem anatomy, monocot stem anatomy, dicot leaf anatomy, monocot leaf anatomy, secondary growth, vascular cambium, cork cambium, annual rings')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant anatomy, tissues, meristems, apical meristem, lateral meristem, intercalary meristem, permanent tissues, simple tissues, parenchyma, collenchyma, sclerenchyma, complex tissues, xylem, phloem, dicot root anatomy, monocot root anatomy, dicot stem anatomy, monocot stem anatomy, dicot leaf anatomy, monocot leaf anatomy, secondary growth, vascular cambium, cork cambium, annual rings, heartwood, sapwood')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- UNIT 2: Plant Physiology -->
                 <div class="unit-card">
                     <div class="unit-header" onclick="toggleUnit(this)">
-                        <h3>Unit 2 – Plant Physiology <span style="margin-left: 1rem;">(20 teaching hours)</span></h3>
+                        <h3>Unit 2 – Plant Physiology <span>(20 teaching hours)</span></h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="unit-content">
                         <ul class="topic-list">
+                            <!-- 2.1 Water relation -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-water"></i>
                                 <div class="topic-info">
                                     <div class="topic-name">2.1 Water relation: Diffusion, osmosis, plasmolysis, ascent of sap, transpiration, guttation</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Diffusion, factors affecting diffusion, osmosis, osmotic pressure, turgor pressure, plasmolysis, deplasmolysis, ascent of sap, transpiration pull theory, root pressure, transpiration, types of transpiration, factors affecting transpiration, guttation')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Water relation, diffusion, factors affecting diffusion, osmosis, endosmosis, exosmosis, osmotic pressure, turgor pressure, plasmolysis, deplasmolysis, ascent of sap, transpiration pull theory, cohesion-tension theory, root pressure, transpiration, types of transpiration, stomatal transpiration, factors affecting transpiration, guttation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.2 Photosynthesis -->
+                            <li class="topic-item">
+                                <i class="fas fa-sun"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.2 Photosynthesis: Pigments, photochemical phase, Calvin cycle, C3 and C4 plants, photorespiration, factors affecting</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Photosynthesis, chloroplast, chlorophyll a, chlorophyll b, carotenoids, light reaction, photochemical phase, photosystem I, photosystem II, photophosphorylation, cyclic, non-cyclic, dark reaction, Calvin cycle, C3 cycle, RUBISCO, PGA, C4 plants, Hatch-Slack pathway, PEP carboxylase, Kranz anatomy, photorespiration, factors affecting photosynthesis, light intensity, CO2 concentration, temperature')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 2.3 Respiration -->
+                            <li class="topic-item">
+                                <i class="fas fa-lungs"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">2.3 Respiration: Types, glycolysis, Krebs cycle, electron transport system, factors affecting</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Respiration, aerobic respiration, anaerobic respiration, glycolysis, EMP pathway, pyruvate, Krebs cycle, citric acid cycle, TCA cycle, mitochondria, electron transport system, ETC, oxidative phosphorylation, chemiosmosis, ATP synthesis, respiratory quotient, RQ, factors affecting respiration, temperature, oxygen')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 2.4 Plant hormones -->
                             <li class="topic-item">
                                 <i class="fas fa-leaf"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.2 Photosynthesis: Pigments, photochemical phase, Calvin cycle, C3 and C4 plants, photorespiration</div>
-                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                    <div class="topic-name">2.4 Plant hormones: Auxins, gibberellins, cytokinins - physiological effects</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Photosynthesis, chloroplast structure, photosynthetic pigments, chlorophyll, carotenoids, light reaction, photosystem I, photosystem II, photophosphorylation, dark reaction, Calvin cycle, C3 cycle, C4 plants, Hatch Slack pathway, photorespiration, factors affecting photosynthesis')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Plant hormones, auxins, IAA, physiological effects, cell elongation, apical dominance, phototropism, gibberellins, GA, physiological effects, stem elongation, seed germination, cytokinins, physiological effects, cell division, delay senescence')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
+                            <!-- 2.5 Plant growth -->
                             <li class="topic-item">
-                                <i class="fas fa-leaf"></i>
+                                <i class="fas fa-seedling"></i>
                                 <div class="topic-info">
-                                    <div class="topic-name">2.3 Respiration: Glycolysis, Krebs cycle, ETS, factors affecting respiration</div>
+                                    <div class="topic-name">2.5 Plant growth: Seed germination, dormancy, photoperiodism, vernalization, senescence, movements</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Seed germination, conditions for germination, dormancy, causes of dormancy, breaking dormancy, photoperiodism, short day plants, long day plants, day neutral plants, vernalization, senescence, plant movements, tropic movements, phototropism, geotropism, nastic movements')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 3: Genetics -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 3 – Genetics <span>(21 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 3.1 Genetic Materials -->
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.1 Genetic Materials: DNA and RNA structure, replication, genetic code</div>
                                     <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
                                 </div>
-                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Respiration, aerobic respiration, anaerobic respiration, glycolysis, Krebs cycle, citric acid cycle, electron transport system, oxidative phosphorylation, ATP synthesis, respiratory quotient, factors affecting respiration')">
-                                    <i class="fas fa-robot"></i> Generate
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Genetic material, DNA structure, double helix, Watson and Crick, nucleotides, adenine, guanine, cytosine, thymine, base pairing, RNA structure, mRNA, tRNA, rRNA, DNA replication, semi-conservative, Meselson-Stahl experiment, replication fork, DNA polymerase, Okazaki fragments, genetic code, codon, triplet, degenerate code, start codon, stop codon')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 3.2 Mendelian genetics -->
+                            <li class="topic-item">
+                                <i class="fas fa-seedling"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.2 Mendelian genetics: Mendel's experiments, laws of inheritance, gene interactions</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 6 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Mendelian genetics, Gregor Mendel, pea plant experiments, monohybrid cross, dihybrid cross, law of segregation, law of independent assortment, dominant, recessive, phenotype, genotype, test cross, back cross, incomplete dominance, codominance, multiple alleles, blood groups, epistasis')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 3.3 Linkage and crossing over -->
+                            <li class="topic-item">
+                                <i class="fas fa-link"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.3 Linkage and crossing over: Types, sex-linked inheritance (color blindness, Drosophila eye color)</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Linkage, complete linkage, incomplete linkage, crossing over, recombination, Morgan, fruit fly, Drosophila, sex-linked inheritance, X-linked genes, Y-linked genes, color blindness, hemophilia, Drosophila eye color, white eye, red eye')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 3.4 Mutation and polyploidy -->
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">3.4 Mutation and polyploidy: Gene and chromosomal mutations, polyploidy origin and significance</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 5 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Mutation, gene mutation, point mutation, substitution, insertion, deletion, chromosomal mutation, deletion, duplication, inversion, translocation, polyploidy, autopolyploidy, allopolyploidy, triploid, tetraploid, significance of polyploidy, crop improvement, wheat, cotton')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 4: Embryology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 4 – Embryology <span>(8 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-egg"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">4.1 Reproduction in angiosperms: Pollination, fertilization, gametophytes, embryo development, endosperm</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Angiosperm reproduction, asexual reproduction, sexual reproduction, male gametophyte, pollen grain, female gametophyte, embryo sac, pollination, self-pollination, cross-pollination, agents of pollination, fertilization, double fertilization, triple fusion, endosperm development, embryo development, monocot embryo, dicot embryo')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 5: Biotechnology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 5 – Biotechnology <span>(7 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-flask"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">5.1 Biotechnology: Tissue culture, plant breeding, GMOs, biofertilizers, biopesticides, food safety</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 7 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Botany', 'Biotechnology, plant tissue culture, explant, callus, regeneration, micropropagation, somatic embryogenesis, plant breeding, hybridization, disease resistance plants, green manure, biofertilizer, Rhizobium, Azotobacter, biopesticide, Bacillus thuringiensis, Bt, genetic engineering, GMOs, genetically modified organisms, Bt cotton, golden rice, food safety, food security')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ZOOLOGY SECTION - CLASS 12 ===== -->
+            <div class="subject-section">
+                <div class="subject-badge"><i class="fas fa-paw"></i> Zoology (Theory) · 64 teaching hours</div>
+                
+                <!-- UNIT 6: Animal Tissues -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 6 – Animal Tissues <span>(8 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <li class="topic-item">
+                                <i class="fas fa-bone"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">6.1 Animal Tissues: Epithelial, connective, muscular, nervous - structure, functions, location</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 8 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Animal tissues, epithelial tissue, squamous, cuboidal, columnar, ciliated, glandular, connective tissue, areolar, adipose, bone, cartilage, blood, muscular tissue, skeletal muscle, smooth muscle, cardiac muscle, nervous tissue, neurons, neuroglia, location and functions')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 7: Developmental Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 7 – Developmental Biology <span>(6 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 7.1 Gametogenesis -->
+                            <li class="topic-item">
+                                <i class="fas fa-egg"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.1 Gametogenesis: Spermatogenesis and Oogenesis</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Gametogenesis, spermatogenesis, seminiferous tubules, spermatogonia, primary spermatocyte, secondary spermatocyte, spermatids, sperm, spermiogenesis, oogenesis, ovary, oogonia, primary oocyte, secondary oocyte, ovum, polar bodies')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 7.2 Frog development -->
+                            <li class="topic-item">
+                                <i class="fas fa-frog"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">7.2 Development of frog: Fertilization, cleavage, blastulation, gastrulation, organogenesis</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Frog development, fertilization, external fertilization, cleavage, morula, blastula, blastulation, gastrulation, germ layers, ectoderm, mesoderm, endoderm, organogenesis, notochord formation, nerve cord formation, coelom formation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 8: Human Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 8 – Human Biology <span>(28 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 8.1 Digestive system -->
+                            <li class="topic-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.1 Digestive system: Alimentary canal, digestive glands, physiology of digestion</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human digestive system, alimentary canal, mouth, pharynx, esophagus, stomach, small intestine, large intestine, digestive glands, salivary glands, liver, pancreas, physiology of digestion, digestion of carbohydrates, proteins, fats, absorption, assimilation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.2 Respiratory System -->
+                            <li class="topic-item">
+                                <i class="fas fa-lungs"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.2 Respiratory System: Organs, respiratory mechanism, gas exchange, transport, regulation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human respiratory system, nostrils, nasal cavity, pharynx, larynx, trachea, bronchi, bronchioles, alveoli, lungs, mechanism of breathing, inspiration, expiration, gas exchange, transport of oxygen, transport of carbon dioxide, regulation of respiration, respiratory center')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.3 Circulatory System -->
+                            <li class="topic-item">
+                                <i class="fas fa-heart"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.3 Circulatory System: Heart structure, cardiac cycle, blood vessels, blood grouping, blood pressure</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human circulatory system, heart structure, chambers, valves, cardiac cycle, systole, diastole, cardiac output, blood vessels, arteries, veins, capillaries, blood grouping, ABO system, Rh factor, blood pressure, systolic, diastolic')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.4 Excretory System -->
+                            <li class="topic-item">
+                                <i class="fas fa-kidneys"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.4 Excretory System: Modes of excretion, kidney, urine formation</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Excretion, ammonotelism, ureotelism, uricotelism, human excretory system, kidneys, ureters, urinary bladder, urethra, nephron, glomerulus, Bowman\'s capsule, urine formation, glomerular filtration, tubular reabsorption, tubular secretion')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.5 Nervous system -->
+                            <li class="topic-item">
+                                <i class="fas fa-brain"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.5 Nervous system: CNS, PNS, brain structure, nerve impulse</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Nervous system, central nervous system, CNS, brain, cerebrum, cerebellum, brainstem, spinal cord, peripheral nervous system, PNS, cranial nerves, spinal nerves, autonomic nervous system, sympathetic, parasympathetic, nerve impulse, resting potential, action potential, synapse')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.6 Sense organs -->
+                            <li class="topic-item">
+                                <i class="fas fa-eye"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.6 Sense organs: Structure and functions of eye and ear</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Eye structure, cornea, iris, lens, retina, rods, cones, fovea, blind spot, optic nerve, ear structure, outer ear, pinna, ear canal, middle ear, eardrum, ossicles, inner ear, cochlea, organ of Corti, semicircular canals, hearing mechanism')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.7 Endocrinology -->
+                            <li class="topic-item">
+                                <i class="fas fa-dna"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.7 Endocrinology: Endocrine glands, hormones, hypo/hyperactivity disorders</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 9 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Endocrine system, hypothalamus, pituitary gland, growth hormone, TSH, ACTH, FSH, LH, prolactin, pineal gland, melatonin, thyroid gland, thyroxine, calcitonin, goiter, cretinism, myxedema, parathyroid gland, PTH, adrenal gland, cortisol, aldosterone, adrenaline, pancreas, insulin, glucagon, diabetes mellitus, gonads, testosterone, estrogen, progesterone')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 8.8 Reproductive System -->
+                            <li class="topic-item">
+                                <i class="fas fa-venus-mars"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">8.8 Reproductive System: Male and female reproductive organs, ovarian and menstrual cycle</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 3 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Male reproductive system, testes, epididymis, vas deferens, seminal vesicles, prostate, penis, female reproductive system, ovaries, fallopian tubes, uterus, vagina, ovarian cycle, follicular phase, ovulation, luteal phase, menstrual cycle, proliferative phase, secretory phase, menstruation')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 9: Human Population and Health Disorders -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 9 – Human Population and Health Disorders <span>(6 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 9.1 Human Population -->
+                            <li class="topic-item">
+                                <i class="fas fa-users"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.1 Human Population: Growth problem, control strategies, demographic cycle</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 2 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Human population growth, population explosion, birth rate, death rate, control strategies, family planning, contraception, demographic cycle, high stationary, early expanding, late expanding, low stationary')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 9.2 Health disorders -->
+                            <li class="topic-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">9.2 Health disorders: Cardiovascular, respiratory, renal disorders; substance abuse</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 4 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Cardiovascular disorders, hypertension, atherosclerosis, heart attack, stroke, respiratory disorders, asthma, bronchitis, emphysema, renal disorders, kidney stones, renal failure, dialysis, substance abuse, drug abuse, alcohol abuse, smoking, effects on health')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- UNIT 10: Applied Biology -->
+                <div class="unit-card">
+                    <div class="unit-header" onclick="toggleUnit(this)">
+                        <h3>Unit 10 – Applied Biology <span>(16 teaching hours)</span></h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="unit-content">
+                        <ul class="topic-list">
+                            <!-- 10.1 Application of Zoology -->
+                            <li class="topic-item">
+                                <i class="fas fa-flask"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.1 Application of Zoology: Organ transplant, IVF, amniocentesis, GMOs, poultry, fish farming</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 6 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Applied zoology, tissue and organ transplantation, autograft, allograft, xenograft, IVF, in vitro fertilization, test tube baby, amniocentesis, genetic modified organisms, transgenic animals, poultry farming, chicken breeds, fish farming, aquaculture, carp culture')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
+                                </button>
+                            </li>
+                            <!-- 10.2 Microbial diseases -->
+                            <li class="topic-item">
+                                <i class="fas fa-virus"></i>
+                                <div class="topic-info">
+                                    <div class="topic-name">10.2 Microbial diseases: Typhoid, TB, HIV, cholera, influenza, hepatitis, candidiasis; immunology, industrial microbiology</div>
+                                    <div class="topic-hours"><i class="far fa-clock"></i> 10 hours</div>
+                                </div>
+                                <button class="generate-btn" onclick="generateQuiz('Class 12 Zoology', 'Microbial diseases, typhoid, Salmonella typhi, tuberculosis, Mycobacterium tuberculosis, HIV, AIDS, cholera, Vibrio cholerae, influenza, flu virus, hepatitis, HAV, HBV, HCV, candidiasis, Candida, immunology, vaccines, active immunity, passive immunity, industrial microbiology, dairy products, yogurt, cheese, beverage industry, wine, beer, microbial contamination, water treatment, sewage treatment, biocontrol agents, biofertilizers')">
+                                    <i class="fas fa-robot"></i> Generate MCQs
                                 </button>
                             </li>
                         </ul>
@@ -962,7 +1528,7 @@
             </div>
             <div id="quizLoading" class="loading">
                 <i class="fas fa-circle-notch"></i>
-                <p style="margin-top: 1rem; font-size: 1.2rem;">Gemini is creating your questions based on the syllabus...</p>
+                <p style="margin-top: 1rem; font-size: 1.2rem;">Gemini is creating biology questions based on the syllabus...</p>
             </div>
             <div id="quizQuestions" style="display: none;"></div>
             <div id="quizActions" style="display: none;" class="quiz-actions">
@@ -1035,18 +1601,18 @@
             document.getElementById('quizActions').style.display = 'none';
 
             try {
-                // Create a detailed prompt with the specific topic
-                const prompt = `You are a medical entrance exam question generator. Create 20 challenging multiple choice questions (MCQs) for students preparing for medical entrance exams (like NEET) on the following topic:
+                // Create a detailed prompt with the specific biology topic
+                const prompt = `You are a biology professor creating multiple choice questions for medical entrance exams (like NEET). Generate 20 challenging MCQs on the following biology topic:
 
                 TOPIC: ${topic}
                 
                 IMPORTANT GUIDELINES:
                 1. Questions must be based strictly on the topic provided
-                2. Each question should have 4 options (A, B, C, D)
-                3. Only one option should be correct
-                4. Include questions of varying difficulty (easy, moderate, hard)
-                5. Focus on conceptual understanding and application
-                6. Include questions about definitions, processes, functions, and applications
+                2. Each question should have 4 options (A, B, C, D) with only one correct answer
+                3. Include questions of varying difficulty (easy, moderate, hard)
+                4. Include conceptual questions, factual recall, and application questions
+                5. For biology, include questions about structures, functions, processes, and examples
+                6. Ensure all options are plausible and educational
                 
                 Format your response as a valid JSON array with exactly 20 objects. Each object must have:
                 - "question": string (the question text)
@@ -1119,49 +1685,32 @@
 
             } catch (error) {
                 console.error("Error generating quiz:", error);
-                // Use topic-based sample questions instead of generic ones
-                currentQuestions = generateTopicBasedQuestions(topic);
+                // Use biology-specific sample questions
+                currentQuestions = generateBiologySampleQuestions(topic);
                 displayQuestions();
             }
         };
 
-        // ---------- GENERATE TOPIC-BASED SAMPLE QUESTIONS (FALLBACK) ----------
-        function generateTopicBasedQuestions(topic) {
+        // ---------- GENERATE BIOLOGY-SPECIFIC SAMPLE QUESTIONS ----------
+        function generateBiologySampleQuestions(topic) {
             const questions = [];
-            
-            // Create questions based on topic keywords
             const topicLower = topic.toLowerCase();
             
             for (let i = 0; i < 20; i++) {
                 let question, options, correct;
                 
-                if (topicLower.includes('biomolecule') || topicLower.includes('carbohydrate')) {
+                if (topicLower.includes('cell') || topicLower.includes('mitochondria') || topicLower.includes('nucleus')) {
                     if (i % 3 === 0) {
-                        question = "Which of the following is a monosaccharide?";
-                        options = ["Sucrose", "Starch", "Glucose", "Cellulose"];
-                        correct = 2;
-                    } else if (i % 3 === 1) {
-                        question = "Which biomolecule is primarily responsible for catalyzing biochemical reactions?";
-                        options = ["Carbohydrates", "Lipids", "Proteins", "Nucleic acids"];
-                        correct = 2;
-                    } else {
-                        question = "DNA is a type of:";
-                        options = ["Carbohydrate", "Protein", "Lipid", "Nucleic acid"];
-                        correct = 3;
-                    }
-                }
-                else if (topicLower.includes('cell') && topicLower.includes('division')) {
-                    if (i % 3 === 0) {
-                        question = "Which phase of mitosis is characterized by the alignment of chromosomes at the equator?";
-                        options = ["Prophase", "Metaphase", "Anaphase", "Telophase"];
+                        question = "Which organelle is known as the 'powerhouse of the cell'?";
+                        options = ["Nucleus", "Mitochondria", "Ribosome", "Golgi apparatus"];
                         correct = 1;
                     } else if (i % 3 === 1) {
-                        question = "Crossing over occurs during:";
-                        options = ["Prophase I of meiosis", "Metaphase I of meiosis", "Prophase II of meiosis", "Anaphase II of meiosis"];
-                        correct = 0;
+                        question = "The fluid mosaic model describes the structure of:";
+                        options = ["Cell wall", "Cell membrane", "Nucleus", "Mitochondria"];
+                        correct = 1;
                     } else {
-                        question = "How many daughter cells are produced at the end of meiosis?";
-                        options = ["2 haploid cells", "2 diploid cells", "4 haploid cells", "4 diploid cells"];
+                        question = "Which of the following is present in prokaryotic cells?";
+                        options = ["Nucleus", "Mitochondria", "Ribosomes", "Endoplasmic reticulum"];
                         correct = 2;
                     }
                 }
@@ -1172,12 +1721,12 @@
                         correct = 0;
                     } else if (i % 3 === 1) {
                         question = "The dark reaction of photosynthesis occurs in:";
-                        options = ["Grana of chloroplasts", "Stroma of chloroplasts", "Thylakoid membrane", "Cytoplasm"];
+                        options = ["Grana", "Stroma", "Thylakoids", "Cytoplasm"];
                         correct = 1;
                     } else {
-                        question = "Which of the following is a C4 plant?";
-                        options = ["Rice", "Wheat", "Maize", "Pea"];
-                        correct = 2;
+                        question = "C4 plants are adapted to:";
+                        options = ["Cold climates", "Dry and hot climates", "Wet climates", "Shady areas"];
+                        correct = 1;
                     }
                 }
                 else if (topicLower.includes('respiration')) {
@@ -1190,73 +1739,130 @@
                         options = ["Cytoplasm", "Mitochondrial matrix", "Inner mitochondrial membrane", "Outer mitochondrial membrane"];
                         correct = 1;
                     } else {
-                        question = "How many ATP molecules are produced from one molecule of glucose during aerobic respiration?";
-                        options = ["2", "8", "36-38", "4"];
+                        question = "The final electron acceptor in electron transport chain is:";
+                        options = ["Oxygen", "Water", "Carbon dioxide", "NADH"];
+                        correct = 0;
+                    }
+                }
+                else if (topicLower.includes('dna') || topicLower.includes('genetics')) {
+                    if (i % 3 === 0) {
+                        question = "DNA replication is:";
+                        options = ["Conservative", "Semi-conservative", "Dispersive", "Non-conservative"];
+                        correct = 1;
+                    } else if (i % 3 === 1) {
+                        question = "Who proposed the double helix model of DNA?";
+                        options = ["Mendel", "Darwin", "Watson and Crick", "Lamarck"];
                         correct = 2;
+                    } else {
+                        question = "Which of the following is a stop codon?";
+                        options = ["AUG", "UAA", "GUG", "CAU"];
+                        correct = 1;
+                    }
+                }
+                else if (topicLower.includes('human') || topicLower.includes('digestive') || topicLower.includes('circulatory')) {
+                    if (i % 3 === 0) {
+                        question = "Which chamber of the heart receives oxygenated blood from lungs?";
+                        options = ["Right atrium", "Right ventricle", "Left atrium", "Left ventricle"];
+                        correct = 2;
+                    } else if (i % 3 === 1) {
+                        question = "Pepsin is an enzyme that digests:";
+                        options = ["Carbohydrates", "Proteins", "Fats", "Nucleic acids"];
+                        correct = 1;
+                    } else {
+                        question = "Which blood group is called universal donor?";
+                        options = ["A", "B", "AB", "O"];
+                        correct = 3;
+                    }
+                }
+                else if (topicLower.includes('plant') || topicLower.includes('angiosperm')) {
+                    if (i % 3 === 0) {
+                        question = "Double fertilization is characteristic of:";
+                        options = ["Gymnosperms", "Angiosperms", "Pteridophytes", "Bryophytes"];
+                        correct = 1;
+                    } else if (i % 3 === 1) {
+                        question = "The male reproductive part of a flower is:";
+                        options = ["Pistil", "Stamen", "Ovary", "Petal"];
+                        correct = 1;
+                    } else {
+                        question = "Which plant hormone promotes fruit ripening?";
+                        options = ["Auxin", "Gibberellin", "Cytokinin", "Ethylene"];
+                        correct = 3;
                     }
                 }
                 else if (topicLower.includes('fungi')) {
                     if (i % 3 === 0) {
-                        question = "Which fungus is used in baking industry?";
-                        options = ["Mucor", "Penicillium", "Yeast", "Agaricus"];
-                        correct = 2;
+                        question = "Yeast is used in baking industry because it produces:";
+                        options = ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"];
+                        correct = 1;
                     } else if (i % 3 === 1) {
-                        question = "The antibiotic penicillin is obtained from:";
-                        options = ["Penicillium", "Aspergillus", "Yeast", "Mushroom"];
-                        correct = 0;
+                        question = "Penicillin is obtained from:";
+                        options = ["Bacteria", "Fungi", "Algae", "Virus"];
+                        correct = 1;
                     } else {
                         question = "Which of the following is a poisonous mushroom?";
                         options = ["Agaricus bisporus", "Amanita phalloides", "Pleurotus ostreatus", "Lentinula edodes"];
                         correct = 1;
                     }
                 }
-                else if (topicLower.includes('anatomy') || topicLower.includes('dicot')) {
+                else if (topicLower.includes('ecology') || topicLower.includes('environment')) {
                     if (i % 3 === 0) {
-                        question = "In dicot stem, vascular bundles are:";
-                        options = ["Conjoint, closed", "Conjoint, open", "Radial", "Concentric"];
-                        correct = 1;
+                        question = "The primary producers in an ecosystem are:";
+                        options = ["Herbivores", "Carnivores", "Green plants", "Decomposers"];
+                        correct = 2;
                     } else if (i % 3 === 1) {
-                        question = "Which tissue is responsible for secondary growth in plants?";
-                        options = ["Apical meristem", "Lateral meristem", "Intercalary meristem", "Permanent tissue"];
+                        question = "Ozone layer depletion is caused by:";
+                        options = ["CO2", "CFCs", "SO2", "NO2"];
                         correct = 1;
                     } else {
-                        question = "Monocot root differs from dicot root in having:";
-                        options = ["More than 8 xylem bundles", "Pith", "Pericycle", "Endodermis"];
+                        question = "Which of the following is a greenhouse gas?";
+                        options = ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"];
+                        correct = 2;
+                    }
+                }
+                else if (topicLower.includes('evolution')) {
+                    if (i % 3 === 0) {
+                        question = "Darwin's theory of evolution is based on:";
+                        options = ["Use and disuse", "Natural selection", "Inheritance of acquired characters", "Mutation"];
+                        correct = 1;
+                    } else if (i % 3 === 1) {
+                        question = "Miller-Urey experiment demonstrated:";
+                        options = ["Origin of life", "Origin of species", "Origin of cells", "Origin of DNA"];
                         correct = 0;
+                    } else {
+                        question = "Vestigial organ in human is:";
+                        options = ["Heart", "Appendix", "Liver", "Brain"];
+                        correct = 1;
+                    }
+                }
+                else if (topicLower.includes('endocrin') || topicLower.includes('hormone')) {
+                    if (i % 3 === 0) {
+                        question = "Insulin is produced by:";
+                        options = ["Liver", "Pancreas", "Stomach", "Thyroid"];
+                        correct = 1;
+                    } else if (i % 3 === 1) {
+                        question = "Which gland is called the master gland?";
+                        options = ["Thyroid", "Adrenal", "Pituitary", "Pancreas"];
+                        correct = 2;
+                    } else {
+                        question = "Deficiency of insulin causes:";
+                        options = ["Diabetes insipidus", "Diabetes mellitus", "Goiter", "Cretinism"];
+                        correct = 1;
                     }
                 }
                 else {
-                    // Generic questions based on topic
-                    const words = topic.split(' ').filter(w => w.length > 3).slice(0, 3);
-                    const topicWord = words.length > 0 ? words[0] : "biology";
-                    
+                    // Generic biology questions
                     if (i % 3 === 0) {
-                        question = `Which of the following best describes ${topicWord}?`;
-                        options = [
-                            `Definition of ${topicWord} option A`,
-                            `Definition of ${topicWord} option B`,
-                            `Definition of ${topicWord} option C`,
-                            `Definition of ${topicWord} option D`
-                        ];
+                        question = "The basic unit of life is:";
+                        options = ["Atom", "Molecule", "Cell", "Tissue"];
                         correct = 2;
                     } else if (i % 3 === 1) {
-                        question = `What is the primary function of ${topicWord} in living organisms?`;
-                        options = [
-                            "Energy production",
-                            "Structural support",
-                            "Information storage",
-                            "Catalysis"
-                        ];
+                        question = "Which of the following is a prokaryote?";
+                        options = ["Amoeba", "Bacteria", "Yeast", "Frog"];
                         correct = 1;
                     } else {
-                        question = `Which statement about ${topicWord} is correct?`;
-                        options = [
-                            `Statement A about ${topicWord}`,
-                            `Statement B about ${topicWord}`,
-                            `Statement C about ${topicWord}`,
-                            `Statement D about ${topicWord}`
-                        ];
-                        correct = 0;
+                        question = "Enzymes are made up of:";
+                        options = ["Carbohydrates", "Lipids", "Proteins", "Nucleic acids"];
+                        correct = 2;
                     }
                 }
                 
@@ -1331,13 +1937,13 @@
             let feedback = "";
             if (correct < 10) {
                 message = "📚 Practice More!";
-                feedback = "Keep working hard. Review the topics and try again.";
+                feedback = "Keep working hard. Review the concepts and try again.";
             } else if (correct >= 10 && correct < 16) {
                 message = "👍 Good!";
-                feedback = "You're on the right track. A little more practice will make you excellent.";
+                feedback = "You're on the right track. Focus on the topics where you made mistakes.";
             } else {
                 message = "🌟 Excellent!";
-                feedback = "Outstanding performance! You've mastered this topic.";
+                feedback = "Outstanding performance! You've mastered this biology topic.";
             }
             
             document.getElementById('resultMessage').innerText = message;
