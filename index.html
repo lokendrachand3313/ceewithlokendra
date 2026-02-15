@@ -3,630 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedPrepHive · Class 11 & 12 Biology</title>
-    <!-- Font Awesome 6 (free) -->
+    <title>MedPrep · Your Medical Entrance Hub</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
+
         body {
-            background: #ecf5fb;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: linear-gradient(145deg, #f8fafc 0%, #eef2f5 100%);
             min-height: 100vh;
-            padding: 1.5rem 1rem 2rem;
+            color: #0b2b3c;
         }
-        .main-container {
-            max-width: 1300px;
-            width: 100%;
+
+        /* navigation bar */
+        .navbar {
+            background: rgba(6, 38, 53, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(0,20,30,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #4f9da6;
         }
-        /* header */
-        .logo-area {
+
+        .logo a {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #b7e4f0, #f4e3b1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #f0f9ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.2rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 2rem;
+            gap: 6px;
         }
-        .logo-icon {
-            background: #0b3b5c;
-            color: white;
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 20px -5px rgba(0,40,70,0.2);
+
+        .nav-links a i {
+            color: #80cdd9;
         }
-        .logo-text h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #0b2b3f;
+
+        .nav-links a:hover {
+            border-bottom-color: #ffcf8d;
+            color: #ffedc9;
+            transform: translateY(-2px);
+        }
+
+        /* main header */
+        .hero {
+            text-align: center;
+            padding: 3rem 1.5rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0f4e5a, #1d7585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 4px 4px 12px rgba(18, 96, 110, 0.2);
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
         }
-        .logo-text p {
-            color: #3a5670;
-            font-weight: 400;
-            margin-top: 4px;
-        }
-        /* subject row */
-        .subject-panel {
-            background: white;
-            border-radius: 36px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px -12px rgba(0,30,50,0.15);
-            margin-bottom: 2rem;
-        }
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #1e4c6b;
-            margin-bottom: 1.5rem;
-        }
-        .subject-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .subject-card {
-            background: linear-gradient(145deg, #f9fcff, #ecf3f8);
-            border: 2px solid rgba(160, 200, 240, 0.3);
-            border-radius: 60px;
-            padding: 0.9rem 2rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #124263;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-        .subject-card i {
-            color: #2b7abf;
+
+        .hero-tagline {
             font-size: 1.4rem;
-        }
-        .subject-card.active {
-            background: #0b3b5c;
-            border-color: #0b3b5c;
-            color: white;
-            box-shadow: 0 20px 30px -8px #0b3b5c80;
-        }
-        .subject-card.active i {
-            color: white;
+            color: #2c5765;
+            font-weight: 300;
+            margin-top: -0.2rem;
         }
 
-        /* class selector tabs (11 / 12) */
-        .class-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin: 1.5rem 0 1rem;
-            background: white;
-            padding: 0.5rem;
-            border-radius: 60px;
-            width: fit-content;
-            border: 1px solid #c7ddec;
-        }
-        .class-tab {
-            padding: 0.6rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            background: transparent;
-            color: #2b4e6b;
-            transition: 0.2s;
-        }
-        .class-tab.active {
-            background: #0b3b5c;
-            color: white;
+        /* quote cards */
+        .quotes-section {
+            max-width: 1200px;
+            margin: 2rem auto 3rem;
+            padding: 0 2rem;
         }
 
-        /* chapter grid */
-        .chapters-section {
-            background: white;
-            border-radius: 36px;
-            padding: 1.8rem 2rem 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 30px -10px rgba(0,40,60,0.1);
-        }
-        .chapters-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .chip-info {
-            background: #deedf9;
-            color: #0b3b5c;
-            border-radius: 40px;
-            padding: 0.5rem 1.8rem;
-            font-weight: 500;
-        }
-        .chapter-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-        .chapter-btn {
-            background: white;
-            border: 1.5px solid #c5d9e9;
-            border-radius: 60px;
-            padding: 0.6rem 1.8rem;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #124263;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .chapter-btn:hover {
-            border-color: #2b7abf;
-            background: #e7f2fc;
-        }
-        .chapter-btn.selected {
-            background: #0b3b5c;
-            border-color: #0b3b5c;
-            color: white;
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        /* quiz panel */
-        .quiz-panel {
-            background: white;
-            border-radius: 36px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px -10px #0b2b3f30;
-        }
-        .quiz-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .quiz-header h2 {
-            font-size: 1.7rem;
-            font-weight: 600;
-            color: #0b2b3f;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .generate-btn {
-            background: linear-gradient(145deg, #0b3b5c, #04273d);
-            border: none;
-            border-radius: 60px;
-            padding: 0.8rem 2.2rem;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            box-shadow: 0 20px 30px -10px #0b3b5c;
-            transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .generate-btn:hover {
-            background: #0e4b73;
-        }
-        .question-counter {
-            background: #ecf3f8;
-            border-radius: 60px;
-            padding: 0.3rem 1.5rem;
-            font-weight: 500;
-        }
-
-        /* question list */
-        .question-list {
+        .quote-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(6px);
+            background: linear-gradient(145deg, #ffffff, #f3f9fc);
+            border-radius: 32px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 25px 35px -10px rgba(33, 87, 101, 0.25);
+            border: 1px solid rgba(128, 205, 217, 0.3);
+            transition: 0.25s ease;
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
-            margin: 2rem 0 2rem;
-        }
-        .question-item {
-            background: #f7fbfe;
-            border-radius: 28px;
-            padding: 1.8rem 2rem;
-            border-left: 8px solid #2b7abf;
-        }
-        .q-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #04334b;
-        }
-        .options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-        }
-        .option {
-            background: white;
-            border-radius: 60px;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid #cee0ec;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .option:hover {
-            background: #e1effb;
-        }
-        .option.selected {
-            background: #0b3b5c;
-            color: white;
-            border-color: #0b3b5c;
         }
 
-        /* submit area */
-        .submit-area {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 2px dashed #bdd3e6;
-            padding-top: 2rem;
-            margin-top: 1rem;
+        .quote-card:hover {
+            transform: scale(1.02) translateY(-6px);
+            border-color: #80cdd9;
+            box-shadow: 0 32px 45px -8px #25657570;
         }
-        .submit-btn {
-            background: #1b6b50;
-            border: none;
-            border-radius: 60px;
-            padding: 0.8rem 2.8rem;
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 8px 16px #1b6b5040;
+
+        .quote-text {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            font-style: italic;
+            color: #153e4a;
+            position: relative;
+            margin-bottom: 1.5rem;
         }
-        .submit-btn:hover {
-            background: #145c43;
-        }
-        .score-display {
-            background: #0b2b3f;
-            color: white;
-            border-radius: 60px;
-            padding: 0.7rem 2.5rem;
+
+        .quote-text i {
+            color: #4797a7;
             font-size: 1.8rem;
-            font-weight: 700;
+            opacity: 0.5;
+            margin-right: 6px;
         }
-        .reset-btn {
-            background: transparent;
-            border: 2px solid #7899b3;
-            border-radius: 40px;
-            padding: 0.6rem 2rem;
+
+        .author {
             font-weight: 600;
-            color: #124263;
+            font-size: 1.2rem;
+            color: #0d4b58;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+            border-top: 2px dashed #b7dde5;
+            padding-top: 1rem;
+        }
+
+        .author img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #a4d4de;
+        }
+
+        .author span {
+            font-size: 0.95rem;
+            color: #317481;
+            font-weight: 400;
+        }
+
+        /* page cards preview (subjects etc) */
+        .page-showcase {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #15434f;
+            margin-bottom: 2rem;
+            border-left: 10px solid #4f9da6;
+            padding-left: 1.5rem;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 15px 25px #cbdbe3;
+            transition: 0.2s;
+            border: 1px solid white;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
-        .reset-btn:hover {
-            background: #ddebf5;
+
+        .page-card:hover {
+            background: #effafd;
+            border-color: #4797a7;
+            transform: translateY(-8px);
         }
-        .loader {
-            display: inline-flex;
+
+        .page-card i {
+            font-size: 3.2rem;
+            color: #206d7e;
+            margin-bottom: 1rem;
+        }
+
+        .page-card h3 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #1b5d6b;
+        }
+
+        .page-card p {
+            color: #427e8b;
+            font-weight: 300;
+        }
+
+        /* team sneak peek */
+        .team-mini {
+            background: #daeef3;
+            border-radius: 60px 60px 20px 20px;
+            padding: 3rem 2.5rem;
+            margin: 4rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .team-mini h2 {
+            font-size: 2.2rem;
+            color: #073b46;
+            max-width: 400px;
+        }
+
+        .team-mini button {
+            background: #135f6e;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
             align-items: center;
             gap: 10px;
-            background: #f9f2d7;
-            border-radius: 60px;
-            padding: 0.4rem 1.8rem;
+            box-shadow: 0 8px 0 #0a3f49;
+            transition: 0.1s ease;
+            cursor: pointer;
         }
-        .footnote {
+
+        .team-mini button:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #0a3f49;
+        }
+
+        .team-mini button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #03242e;
+            color: #afd5df;
             text-align: center;
-            margin-top: 2rem;
-            color: #6082a0;
+            padding: 2rem;
+            font-size: 1rem;
         }
-        .hide {
-            display: none !important;
+
+        hr {
+            border: 1px solid #aacbd5;
+            margin: 2rem 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.8rem; }
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-links { justify-content: center; gap: 1rem; }
         }
     </style>
 </head>
 <body>
-<div class="main-container">
-    <!-- header -->
-    <div class="logo-area">
-        <div class="logo-icon"><i class="fas fa-stethoscope"></i></div>
-        <div class="logo-text">
-            <h1>MedPrepHive <span style="font-size: 1rem; background: #dbeafe; padding: 0.2rem 1rem; border-radius: 40px;"><i class="fas fa-robot"></i> DeepSeek AI</span></h1>
-            <p>class 11 & 12 biology · chapter-wise MCQs</p>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.htm">⚕️MedPrep</a>
+        </div>
+        <div class="nav-links">
+            <a href="physics.htm"><i class="fas fa-atom"></i> Physics</a>
+            <a href="chemistry.htm"><i class="fas fa-flask"></i> Chemistry</a>
+            <a href="biology.htm"><i class="fas fa-dna"></i> Biology</a>
+            <a href="mathematics.htm"><i class="fas fa-square-root-alt"></i> Math</a>
+            <a href="model-questions.htm"><i class="fas fa-pencil-alt"></i> Model Qs</a>
+            <a href="team.htm"><i class="fas fa-user-md"></i> Team</a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO / WELCOME ===== -->
+    <div class="hero">
+        <h1>Welcome to the Medical World.</h1>
+        <div class="hero-tagline">
+            <i class="fas fa-heartbeat" style="color:#bc8c5c;"></i>  heal · learn · excel  
         </div>
     </div>
 
-    <!-- subject selector (only biology matters) but keep all for context -->
-    <div class="subject-panel">
-        <div class="section-label"><i class="fas fa-book-open"></i> subject</div>
-        <div class="subject-grid" id="subjectGrid">
-            <div class="subject-card" data-subject="mathematics"><i class="fas fa-calculator"></i> Math</div>
-            <div class="subject-card" data-subject="physics"><i class="fas fa-atom"></i> Physics</div>
-            <div class="subject-card" data-subject="chemistry"><i class="fas fa-flask"></i> Chemistry</div>
-            <div class="subject-card active" data-subject="biology"><i class="fas fa-dna"></i> Biology</div>
+    <!-- ===== MOTIVATIONAL QUOTES ===== -->
+    <section class="quotes-section">
+        <div class="quote-grid">
+            <!-- quote 1 : Hippocrates -->
+            <div class="quote-card">
+                <div class="quote-text">
+                    <i class="fas fa-quote-left"></i>
+                    Wherever the art of medicine is loved, there is also a love of humanity.
+                </div>
+                <div class="author">
+                    <i class="fas fa-user-circle" style="font-size:2.2rem; color:#286f7e;"></i>
+                    <div>
+                        Hippocrates <span>· Father of Medicine</span>
+                    </div>
+                </div>
+            </div>
+            <!-- quote 2 : William Osler -->
+            <div class="quote-card">
+                <div class="quote-text">
+                    <i class="fas fa-quote-left"></i>
+                    The good physician treats the disease; the great physician treats the patient who has the disease.
+                </div>
+                <div class="author">
+                    <i class="fas fa-user-md" style="font-size:2.2rem; color:#286f7e;"></i>
+                    <div>
+                        William Osler <span>· one of the founding professors of Johns Hopkins Hospital</span>
+                    </div>
+                </div>
+            </div>
+            <!-- quote 3 : Florence Nightingale -->
+            <div class="quote-card">
+                <div class="quote-text">
+                    <i class="fas fa-quote-left"></i>
+                    Let us never consider ourselves finished nurses…. we must be learning all of our lives.
+                </div>
+                <div class="author">
+                    <i class="fas fa-female" style="font-size:2.2rem; color:#286f7e;"></i>
+                    <div>
+                        Florence Nightingale <span>· founder of modern nursing</span>
+                    </div>
+                </div>
+            </div>
+            <!-- quote 4 : Charles Scriber (for motivation) -->
+            <div class="quote-card">
+                <div class="quote-text">
+                    <i class="fas fa-quote-left"></i>
+                    The only way to keep your health is to eat what you don't want, drink what you don't like, and do what you'd rather not.
+                </div>
+                <div class="author">
+                    <i class="fas fa-smile" style="font-size:2.2rem; color:#286f7e;"></i>
+                    <div>
+                        Mark Twain <span>· humorist, with medical wit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PAGES PREVIEW (SUBJECTS, MODEL Q, TEAM) ===== -->
+    <div class="page-showcase">
+        <div class="section-title">
+            <i class="fas fa-compass" style="margin-right: 12px;"></i> explore your prep
+        </div>
+        <div class="card-container">
+            <!-- physics card (link) -->
+            <a href="physics.htm" class="page-card">
+                <i class="fas fa-atom"></i>
+                <h3>Physics</h3>
+                <p>mechanics · modern · optics</p>
+            </a>
+            <!-- chemistry card -->
+            <a href="chemistry.htm" class="page-card">
+                <i class="fas fa-flask"></i>
+                <h3>Chemistry</h3>
+                <p>organic · inorganic · physical</p>
+            </a>
+            <!-- biology card -->
+            <a href="biology.htm" class="page-card">
+                <i class="fas fa-dna"></i>
+                <h3>Biology</h3>
+                <p>botany · zoology · human physio</p>
+            </a>
+            <!-- mathematics card -->
+            <a href="mathematics.htm" class="page-card">
+                <i class="fas fa-square-root-alt"></i>
+                <h3>Mathematics</h3>
+                <p>calculus · algebra · stats</p>
+            </a>
+            <!-- model questions card -->
+            <a href="model-questions.htm" class="page-card">
+                <i class="fas fa-pencil-alt"></i>
+                <h3>Model Qs</h3>
+                <p>mock tests · PYQs · practice</p>
+            </a>
+            <!-- team card -->
+            <a href="team.htm" class="page-card">
+                <i class="fas fa-user-friends"></i>
+                <h3>Team</h3>
+                <p>our mentors & founders</p>
+            </a>
         </div>
     </div>
 
-    <!-- grade 11 / 12 tabs (only visible when biology selected) -->
-    <div id="gradeTabsContainer">
-        <div class="class-tabs">
-            <span class="class-tab active" data-grade="11">Grade 11</span>
-            <span class="class-tab" data-grade="12">Grade 12</span>
-        </div>
+    <!-- quick snippet: extra motivation & team callout -->
+    <div class="team-mini">
+        <h2><i class="fas fa-hand-holding-heart" style="color:#02262f;"></i> built by doctors & toppers — learn from the best.</h2>
+        <button><a href="team.htm" style="color:white;">meet the team <i class="fas fa-arrow-right"></i></a></button>
     </div>
 
-    <!-- chapters panel (dynamic based on grade) -->
-    <div class="chapters-section" id="chaptersPanel">
-        <div class="chapters-header">
-            <span class="chip-info" id="gradeDisplay"><i class="fas fa-leaf"></i> Grade 11 · botany + zoology</span>
-            <span class="ai-tag"><i class="fas fa-bolt"></i> each set: 20 fresh MCQs</span>
-        </div>
-        <div class="chapter-grid" id="chapterList"></div>
+    <!-- a small separator -->
+    <hr>
+
+    <!-- extra quote zone (smaller) -->
+    <div style="text-align: center; margin: 2rem; font-size: 1.3rem; color: #255f6b;">
+        <i class="fas fa-quote-right" style="color:#417e8a; margin-right: 10px;"></i> 
+        "Medicine is a science of uncertainty and an art of probability." – William Osler
     </div>
 
-    <!-- quiz engine -->
-    <div class="quiz-panel">
-        <div class="quiz-header">
-            <h2><i class="fas fa-question-circle"></i> <span id="activeChapter">Plant Anatomy</span></h2>
-            <button class="generate-btn" id="generateMCQ"><i class="fas fa-microchip"></i> generate 20 questions</button>
-        </div>
-        <div id="loader" class="loader" style="display: none;"><i class="fas fa-spinner fa-pulse"></i> DeepSeek generating ...</div>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>⩺ MedPrep · every step towards medicine counts ⩺</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">© 2026 · for future healers · <a href="#" style="color:#b0dee8;">contact</a> · <a href="#" style="color:#b0dee8;">privacy</a></p>
+    </footer>
 
-        <div id="questionsContainer" class="question-list"></div>
-
-        <div class="submit-area" id="submitArea">
-            <button class="submit-btn" id="submitQuiz"><i class="fas fa-check-circle"></i> submit answers</button>
-            <div class="score-display" id="scoreDisplay">0 / 20</div>
-            <button class="reset-btn" id="resetQuiz"><i class="fas fa-undo-alt"></i> reset</button>
-        </div>
-    </div>
-    <div class="footnote">✔️ select one option per question · final submit reveals correct count</div>
-</div>
-
-<script>
-    (function() {
-        // ---------- grade 11 topics (from previous botany+zoology) ----------
-        const grade11Topics = [
-            "Biomolecules", "Cell (prokaryotic/eukaryotic)", "Cell division",
-            "Fungi (Mucor, Yeast)", "Lichen", "Algae (Spirogyra)", "Bryophyta (Marchantia)",
-            "Pteridophyta (Dryopteris)", "Gymnosperm (Pinus)", "Angiosperm families",
-            "Microbiology (Monera, Virus)", "Ecology (ecosystem, cycles)", "Ecological adaptation",
-            "Vegetation / conservation", "Evolution (Oparin, evidences)", "Human evolution",
-            "Protista (Paramecium, Plasmodium)", "Animalia phyla", "Earthworm (Pheretima)",
-            "Frog (Rana tigrina)", "Animal adaptation & behavior", "Pollution & pesticides",
-            "Conservation biology (IUCN)"
-        ];
-
-        // ---------- grade 12 topics (from provided syllabus) ----------
-        const grade12Topics = [
-            "Plant anatomy (dicot/monocot)", "Secondary growth", "Water relation (osmosis, transpiration)",
-            "Photosynthesis (Calvin, C3/C4)", "Respiration (glycolysis, Krebs)", "Plant hormones (auxins, etc.)",
-            "Plant growth & movement", "DNA & RNA (genetic material)", "Mendelian genetics & interactions",
-            "Linkage & crossing over", "Mutation & polyploidy", "Embryology (gametophytes, endosperm)",
-            "Biotechnology (tissue culture, GMOs)", "Animal tissues (epithelial, etc.)", "Gametogenesis & frog development",
-            "Digestive system", "Respiratory system", "Circulatory system (heart, cardiac cycle)",
-            "Excretory system (urine formation)", "Nervous system (brain, nerve impulse)",
-            "Sense organs (eye, ear)", "Endocrinology (glands & disorders)", "Reproductive system (ovarian cycle)",
-            "Human population & health disorders", "Applied Zoology (transplantation, IVF)",
-            "Microbial diseases (typhoid, TB, HIV, etc.)"
-        ];
-
-        // current state
-        let currentSubject = 'biology';          // only biology matters
-        let currentGrade = '11';                  // 11 or 12
-        let selectedChapter = grade11Topics[0];   // default
-        let questions = [];                        // array of 20 { question, options, correct }
-        let userAnswers = [];                       // index -> selected option (0-3) or null
-        let submitted = false;
-
-        // DOM elements
-        const subjectCards = document.querySelectorAll('.subject-card');
-        const gradeTabsContainer = document.getElementById('gradeTabsContainer');
-        const chaptersPanel = document.getElementById('chaptersPanel');
-        const chapterListDiv = document.getElementById('chapterList');
-        const gradeDisplaySpan = document.getElementById('gradeDisplay');
-        const activeChapterSpan = document.getElementById('activeChapter');
-        const generateBtn = document.getElementById('generateMCQ');
-        const questionsContainer = document.getElementById('questionsContainer');
-        const loader = document.getElementById('loader');
-        const submitBtn = document.getElementById('submitQuiz');
-        const scoreDisplay = document.getElementById('scoreDisplay');
-        const resetBtn = document.getElementById('resetQuiz');
-
-        // ---- render chapters based on grade ----
-        function renderChapters() {
-            const topics = currentGrade === '11' ? grade11Topics : grade12Topics;
-            chapterListDiv.innerHTML = '';
-            topics.forEach(topic => {
-                const btn = document.createElement('span');
-                btn.classList.add('chapter-btn');
-                if (topic === selectedChapter) btn.classList.add('selected');
-                btn.textContent = topic;
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    selectedChapter = topic;
-                    activeChapterSpan.textContent = selectedChapter;
-                    resetQuiz();  // clear previous questions when chapter changes
-                });
-                chapterListDiv.appendChild(btn);
-            });
-            activeChapterSpan.textContent = selectedChapter;
-            gradeDisplaySpan.innerHTML = (currentGrade === '11' ? '<i class="fas fa-leaf"></i> Grade 11 · botany+zoology' : '<i class="fas fa-dragon"></i> Grade 12 · botany+zoology');
-        }
-
-        // ---- generate dummy MCQs based on chapter (simulate DeepSeek) ----
-        function generateMCQsForChapter(chapter, count = 20) {
-            const qs = [];
-            for (let i = 1; i <= count; i++) {
-                const opts = [
-                    `${chapter} – option A for Q${i}`,
-                    `${chapter} – option B for Q${i}`,
-                    `${chapter} – option C for Q${i}`,
-                    `${chapter} – option D for Q${i}`
-                ];
-                const correctIdx = Math.floor(Math.random() * 4);
-                qs.push({
-                    question: `[${chapter}] Sample question #${i} based on ${chapter}?`,
-                    options: opts,
-                    correct: correctIdx
-                });
-            }
-            return qs;
-        }
-
-        // render questions to DOM
-        function renderQuestions() {
-            if (!questions.length) {
-                questionsContainer.innerHTML = `<div style="padding: 3rem; text-align: center;"><i class="fas fa-robot fa-2x" style="opacity:0.4;"></i><p style="margin-top:1rem;">Click "generate" for 20 MCQs on <strong>${selectedChapter}</strong></p></div>`;
-                return;
-            }
-
-            let html = '';
-            questions.forEach((q, idx) => {
-                const selectedIdx = userAnswers[idx] !== undefined ? userAnswers[idx] : null;
-                let optsHtml = '';
-                q.options.forEach((opt, optIdx) => {
-                    const letter = String.fromCharCode(65 + optIdx);
-                    let cls = 'option';
-                    if (selectedIdx === optIdx) cls += ' selected';
-                    optsHtml += `<div class="${cls}" data-q-index="${idx}" data-opt-index="${optIdx}">${letter}. ${opt}</div>`;
-                });
-                html += `
-                <div class="question-item" data-q-index="${idx}">
-                    <div class="q-text">Q${idx+1}. ${q.question}</div>
-                    <div class="options">${optsHtml}</div>
-                </div>`;
-            });
-            questionsContainer.innerHTML = html;
-
-            // attach option click listeners
-            document.querySelectorAll('.option').forEach(opt => {
-                opt.addEventListener('click', (e) => {
-                    if (submitted) return; // block changes after submit
-                    const qIdx = e.currentTarget.dataset.qIndex;
-                    const optIdx = e.currentTarget.dataset.optIndex;
-                    if (qIdx === undefined || optIdx === undefined) return;
-                    const qInt = parseInt(qIdx);
-                    const optInt = parseInt(optIdx);
-                    // update userAnswers
-                    userAnswers[qInt] = optInt;
-                    // re-render to show selected
-                    renderQuestions();
-                });
-            });
-        }
-
-        // compute score
-        function computeScore() {
-            if (!questions.length) return 0;
-            let correct = 0;
-            questions.forEach((q, i) => {
-                if (userAnswers[i] !== undefined && userAnswers[i] === q.correct) correct++;
-            });
-            return correct;
-        }
-
-        // update score display without changing submitted flag (can be used for live, but we will show only after submit)
-        function updateScoreDisplay(forceScore = null) {
-            if (forceScore !== null) {
-                scoreDisplay.textContent = `${forceScore} / ${questions.length}`;
-            } else {
-                scoreDisplay.textContent = `0 / 20`; // default before submit
-            }
-        }
-
-        // reset quiz (clear questions, answers)
-        function resetQuiz() {
-            questions = [];
-            userAnswers = [];
-            submitted = false;
-            renderQuestions();
-            scoreDisplay.textContent = `0 / 20`;
-        }
-
-        // ---- event listeners ----
-
-        // subject selection
-        subjectCards.forEach(card => {
-            card.addEventListener('click', () => {
-                subjectCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                currentSubject = card.dataset.subject;
-                if (currentSubject === 'biology') {
-                    gradeTabsContainer.classList.remove('hide');
-                    chaptersPanel.classList.remove('hide');
-                } else {
-                    gradeTabsContainer.classList.add('hide');
-                    chaptersPanel.classList.add('hide');
-                    // for other subjects, we just show minimal (optional)
-                }
-                resetQuiz();
-            });
-        });
-
-        // grade tabs (11/12)
-        document.querySelectorAll('.class-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.class-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const newGrade = tab.dataset.grade;
-                currentGrade = newGrade;
-                // update selected chapter to first of new grade list
-                selectedChapter = (currentGrade === '11' ? grade11Topics[0] : grade12Topics[0]);
-                renderChapters();   // re-draw chapters, sets activeChapterSpan
-                resetQuiz();
-            });
-        });
-
-        // generate button
-        generateBtn.addEventListener('click', () => {
-            loader.style.display = 'inline-flex';
-            generateBtn.disabled = true;
-
-            setTimeout(() => {
-                const newQs = generateMCQsForChapter(selectedChapter, 20);
-                questions = newQs;
-                userAnswers = new Array(20).fill(null);
-                submitted = false;
-                renderQuestions();
-                scoreDisplay.textContent = `0 / 20`;
-                loader.style.display = 'none';
-                generateBtn.disabled = false;
-            }, 600);
-        });
-
-        // submit button – compute and show score
-        submitBtn.addEventListener('click', () => {
-            if (!questions.length) {
-                alert('Please generate questions first.');
-                return;
-            }
-            submitted = true; // block further option changes
-            const correctCount = computeScore();
-            scoreDisplay.textContent = `${correctCount} / ${questions.length}`;
-            // optional: disable further clicks via CSS? we already block in option click
-            renderQuestions(); // re-render (options still visible but clicking disabled)
-        });
-
-        // reset button
-        resetBtn.addEventListener('click', () => {
-            resetQuiz();
-        });
-
-        // initial render
-        renderChapters();  // grade 11 by default
-        resetQuiz();
-
-        // ensure grade tabs visible (biology default active)
-    })();
-</script>
+    <!-- small note: all other pages (physics.htm, chemistry.htm, etc) should be created separately.
+         this is the main index page. -->
 </body>
 </html>
