@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedPrepHive · AI Entrance Exam</title>
+    <!-- Font Awesome 5 (free) for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #f0f5fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1.5rem 1rem 2rem;
+        }
+        .main-container {
+            max-width: 1300px;
+            width: 100%;
+        }
+        /* header */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+        .logo-icon {
+            background: #0b3b5c;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 20px -5px rgba(0,40,70,0.2);
+        }
+        .logo-text h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b2b3f;
+            letter-spacing: -0.5px;
+        }
+        .logo-text p {
+            color: #3a5670;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        /* subject grid */
+        .subject-panel {
+            background: white;
+            border-radius: 36px;
+            padding: 2rem 2rem 2rem 2rem;
+            box-shadow: 0 20px 40px -12px rgba(0,30,50,0.15);
+            margin-bottom: 2rem;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1e4c6b;
+            margin-bottom: 1.5rem;
+        }
+        .section-label i {
+            font-size: 1.2rem;
+        }
+        .subject-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .subject-card {
+            background: linear-gradient(145deg, #f9fcff, #ecf3f8);
+            border: 2px solid rgba(160, 200, 240, 0.3);
+            border-radius: 60px;
+            padding: 0.9rem 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #124263;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,20,40,0.02);
+        }
+        .subject-card i {
+            color: #2b7abf;
+            font-size: 1.4rem;
+        }
+        .subject-card.active {
+            background: #0b3b5c;
+            border-color: #0b3b5c;
+            color: white;
+            box-shadow: 0 20px 30px -8px #0b3b5c80;
+        }
+        .subject-card.active i {
+            color: white;
+        }
+
+        /* topics drawer */
+        .topics-section {
+            background: white;
+            border-radius: 36px;
+            padding: 1.8rem 2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 30px -10px rgba(0,40,60,0.1);
+        }
+        .topics-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .chip-subject {
+            background: #deedf9;
+            color: #0b3b5c;
+            border-radius: 40px;
+            padding: 0.5rem 1.6rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ai-tag {
+            color: #0a5c8c;
+            font-weight: 500;
+            background: #e3f0fd;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+        .topic-badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .topic-btn {
+            background: white;
+            border: 1.5px solid #c5d9e9;
+            border-radius: 60px;
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #124263;
+            transition: 0.15s;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .topic-btn:hover {
+            border-color: #2b7abf;
+            background: #e7f2fc;
+        }
+        .topic-btn.selected {
+            background: #0b3b5c;
+            border-color: #0b3b5c;
+            color: white;
+        }
+
+        /* quiz arena */
+        .quiz-panel {
+            background: white;
+            border-radius: 36px;
+            padding: 2rem 2rem 2rem 2rem;
+            box-shadow: 0 20px 40px -10px #0b2b3f30;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .quiz-header h2 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #0b2b3f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .generate-btn {
+            background: linear-gradient(145deg, #0b3b5c, #04273d);
+            border: none;
+            border-radius: 60px;
+            padding: 0.8rem 2.2rem;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            box-shadow: 0 20px 30px -10px #0b3b5c;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .generate-btn:hover {
+            background: #0e4b73;
+            transform: scale(1.02);
+        }
+        .generate-btn:active {
+            transform: scale(0.98);
+        }
+        .question-counter {
+            background: #ecf3f8;
+            border-radius: 60px;
+            padding: 0.3rem 1.5rem;
+            font-weight: 500;
+            color: #124263;
+        }
+        .question-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2rem 0 2rem;
+        }
+        .question-item {
+            background: #f7fbfe;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            border-left: 8px solid #2b7abf;
+            box-shadow: 0 5px 0 #d3e4f0;
+        }
+        .q-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #04334b;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .option {
+            background: white;
+            border-radius: 60px;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #cee0ec;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .option:hover {
+            background: #e1effb;
+            border-color: #1f6aa5;
+        }
+        .option.selected {
+            background: #0b3b5c;
+            color: white;
+            border-color: #0b3b5c;
+        }
+        .answer-check-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .show-answer-btn {
+            background: none;
+            border: 2px solid #0b3b5c;
+            border-radius: 40px;
+            padding: 0.5rem 1.8rem;
+            font-weight: 600;
+            color: #0b3b5c;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .show-answer-btn:hover {
+            background: #0b3b5c10;
+        }
+        .correct-answer-badge {
+            background: #e2f0da;
+            border-radius: 40px;
+            padding: 0.3rem 1.5rem;
+            color: #1e6b3b;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .result-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px dashed #bdd3e6;
+            padding-top: 2rem;
+            margin-top: 1rem;
+        }
+        .score-box {
+            background: #0b2b3f;
+            color: white;
+            border-radius: 60px;
+            padding: 0.7rem 2.2rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .reset-btn {
+            background: transparent;
+            border: 2px solid #7899b3;
+            border-radius: 40px;
+            padding: 0.6rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #124263;
+            cursor: pointer;
+        }
+        .reset-btn:hover {
+            background: #ddebf5;
+        }
+        .loading-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f9f2d7;
+            border-radius: 60px;
+            padding: 0.4rem 1.8rem;
+        }
+        .footnote {
+            text-align: center;
+            margin-top: 2rem;
+            color: #6082a0;
+        }
+        .hide {
+            display: none !important;
+        }
+        i {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- header -->
+    <div class="logo-area">
+        <div class="logo-icon"><i class="fas fa-stethoscope"></i></div>
+        <div class="logo-text">
+            <h1>MedPrepHive <span style="font-size: 1rem; font-weight: 400; background: #dbeafe; padding: 0.2rem 1rem; border-radius: 40px; margin-left: 12px;"><i class="fas fa-robot"></i> DeepSeek AI</span></h1>
+            <p>medical entrance • subject-wise MCQ generator</p>
+        </div>
+    </div>
+
+    <!-- subject selector panel -->
+    <div class="subject-panel">
+        <div class="section-label"><i class="fas fa-book-open"></i> 01 · choose subject</div>
+        <div class="subject-grid" id="subjectGrid">
+            <div class="subject-card" data-subject="mathematics"><i class="fas fa-calculator"></i> Mathematics</div>
+            <div class="subject-card" data-subject="physics"><i class="fas fa-atom"></i> Physics</div>
+            <div class="subject-card" data-subject="chemistry"><i class="fas fa-flask"></i> Chemistry</div>
+            <div class="subject-card active" data-subject="biology"><i class="fas fa-dna"></i> Biology</div>
+        </div>
+    </div>
+
+    <!-- biology topics (only visible when biology active) -->
+    <div class="topics-section" id="topicsPanel">
+        <div class="topics-header">
+            <span class="chip-subject"><i class="fas fa-leaf"></i> Biology · grade 11 syllabus topics</span>
+            <span class="ai-tag"><i class="fas fa-bolt"></i> each click generates 20 fresh MCQs</span>
+        </div>
+        <div class="topic-badge-container" id="topicList">
+            <!-- populated from botany+zoology syllabus via js -->
+        </div>
+    </div>
+
+    <!-- quiz engine -->
+    <div class="quiz-panel" id="quizPanel">
+        <div class="quiz-header">
+            <h2><i class="fas fa-question-circle" style="color: #0b3b5c;"></i> <span id="activeTopicDisplay">Biomolecules</span></h2>
+            <button class="generate-btn" id="generateMCQ"><i class="fas fa-microchip"></i> ask DeepSeek · 20 questions</button>
+        </div>
+        <!-- loader (hidden by default) -->
+        <div id="loader" class="loading-indicator" style="margin-bottom: 1rem; display: none;"><i class="fas fa-spinner fa-pulse"></i> DeepSeek is generating questions ...</div>
+
+        <!-- dynamic question list -->
+        <div id="questionsContainer" class="question-list"></div>
+
+        <!-- result area + reset -->
+        <div class="result-footer" id="resultFooter">
+            <div class="score-box" id="scoreDisplay">0 / 20</div>
+            <button class="reset-btn" id="resetQuiz"><i class="fas fa-undo-alt"></i> clear & start over</button>
+        </div>
+        <div style="margin-top: 1rem;" id="answerMessage"></div>
+    </div>
+    <div class="footnote">⚕️ every set is 20 MCQs · click an option to select · use "show answer" to reveal correct</div>
+</div>
+
+<script>
+    (function() {
+        // ---------- syllabus topics (grade 11 botany + zoology) ----------
+        const biologyTopics = [
+            "Biomolecules", "Cell (prokaryotic/eukaryotic)", "Cell division (mitosis/meiosis)",
+            "Fungi (Mucor, Yeast, mushrooms)", "Lichen", "Algae (Spirogyra)", "Bryophyta (Marchantia)",
+            "Pteridophyta (Dryopteris)", "Gymnosperm (Pinus)", "Angiosperm families (Brassicaceae, Fabaceae, Solanaceae, Liliaceae)",
+            "Microbiology (Monera, Virus)", "Ecology (ecosystem, carbon cycle)", "Ecological adaptation & imbalance",
+            "Vegetation of Nepal / conservation", "Evolution (Oparin, Miller, evidences)", "Human evolution",
+            "Protista (Paramecium, Plasmodium)", "Animalia phyla (overview)", "Earthworm (Pheretima)", "Frog (Rana tigrina)",
+            "Animal adaptation & behavior", "Pollution & pesticides", "Conservation biology (IUCN, Nepal)"
+        ];
+
+        // subject list
+        const subjects = ['mathematics','physics','chemistry','biology'];
+
+        // ---------- state ----------
+        let currentSubject = 'biology';               // default
+        let selectedTopic = 'Biomolecules';           // default first topic
+        let questions = [];                            // array of { question, options, correct }
+        let userAnswers = [];                           // index -> selected option index (0-3) or null
+        let correctAnswersRevealed = [];                // boolean per question
+
+        // ---------- DOM elements ----------
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const topicsPanel = document.getElementById('topicsPanel');
+        const topicListDiv = document.getElementById('topicList');
+        const activeTopicSpan = document.getElementById('activeTopicDisplay');
+        const generateBtn = document.getElementById('generateMCQ');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const resetBtn = document.getElementById('resetQuiz');
+        const loader = document.getElementById('loader');
+
+        // ---------- init: populate topic chips ----------
+        function renderTopicChips() {
+            topicListDiv.innerHTML = '';
+            biologyTopics.forEach(topic => {
+                const chip = document.createElement('span');
+                chip.classList.add('topic-btn');
+                chip.textContent = topic;
+                if (topic === selectedTopic) chip.classList.add('selected');
+                chip.addEventListener('click', () => {
+                    // update selected visual
+                    document.querySelectorAll('.topic-btn').forEach(c => c.classList.remove('selected'));
+                    chip.classList.add('selected');
+                    selectedTopic = topic;
+                    activeTopicSpan.textContent = selectedTopic;
+                    // optional: clear previous questions when topic changes? we reset by design.
+                    resetQuizState();
+                });
+                topicListDiv.appendChild(chip);
+            });
+            activeTopicSpan.textContent = selectedTopic;
+        }
+
+        // reset everything except subject/topic
+        function resetQuizState() {
+            questions = [];
+            userAnswers = [];
+            correctAnswersRevealed = [];
+            renderQuestions();
+            updateScore();
+        }
+
+        // ---------- generate dummy MCQs (simulate DeepSeek AI) ----------
+        function generateQuestionsForTopic(topic, count = 20) {
+            const qs = [];
+            for (let i = 1; i <= count; i++) {
+                const optA = `${topic} option A for Q${i}`;
+                const optB = `${topic} option B for Q${i}`;
+                const optC = `${topic} option C for Q${i}`;
+                const optD = `${topic} option D for Q${i}`;
+                // random correct index (0-3)
+                const correctIdx = Math.floor(Math.random() * 4);
+                const options = [optA, optB, optC, optD];
+                // make a realistic stem
+                const stem = `[${topic}] sample question #${i} based on ${topic}?`;
+                qs.push({
+                    question: stem,
+                    options: options,
+                    correct: correctIdx
+                });
+            }
+            return qs;
+        }
+
+        // render all questions from 'questions' array
+        function renderQuestions() {
+            if (!questions.length) {
+                questionsContainer.innerHTML = `<div style="padding: 3rem; text-align: center; background: #f2f8ff; border-radius: 48px;"><i class="fas fa-robot" style="font-size: 2.5rem; opacity: 0.5;"></i><p style="margin-top: 1rem;">No questions yet. Press "ask DeepSeek" to generate 20 MCQs on <strong>${selectedTopic}</strong></p></div>`;
+                return;
+            }
+
+            let html = '';
+            for (let i = 0; i < questions.length; i++) {
+                const q = questions[i];
+                const selectedIdx = userAnswers[i] !== undefined ? userAnswers[i] : null;
+                const showCorrect = correctAnswersRevealed[i] || false;
+                const correctIndex = q.correct; // 0..3
+
+                let optionsHtml = '';
+                for (let optIdx = 0; optIdx < q.options.length; optIdx++) {
+                    let optionClass = 'option';
+                    if (selectedIdx === optIdx) optionClass += ' selected';
+                    // (if correct answer is shown, we can optionally highlight, but we show badge)
+                    optionsHtml += `<div class="${optionClass}" data-q-index="${i}" data-opt-index="${optIdx}">${String.fromCharCode(65 + optIdx)}. ${q.options[optIdx]}</div>`;
+                }
+
+                const correctLetter = String.fromCharCode(65 + correctIndex);
+                const correctFull = q.options[correctIndex];
+
+                html += `
+                <div class="question-item" data-q-index="${i}">
+                    <div class="q-text">Q${i+1}. ${q.question}</div>
+                    <div class="options" data-q-index="${i}">
+                        ${optionsHtml}
+                    </div>
+                    <div class="answer-check-section">
+                        <button class="show-answer-btn" data-q-index="${i}"><i class="far fa-eye"></i> show answer</button>
+                        ${showCorrect ? `<span class="correct-answer-badge"><i class="fas fa-check-circle"></i> correct: ${correctLetter} · ${correctFull}</span>` : ''}
+                    </div>
+                </div>
+                `;
+            }
+            questionsContainer.innerHTML = html;
+
+            // attach option click listeners
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    const qIdx = e.currentTarget.dataset.qIndex;
+                    const optIdx = e.currentTarget.dataset.optIndex;
+                    if (!qIdx || optIdx === undefined) return;
+                    // update userAnswers
+                    userAnswers[parseInt(qIdx)] = parseInt(optIdx);
+                    // re-render to reflect selected option
+                    renderQuestions();
+                    updateScore();
+                });
+            });
+
+            // attach show answer buttons
+            document.querySelectorAll('.show-answer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const qIdx = e.currentTarget.dataset.qIndex;
+                    if (qIdx === undefined) return;
+                    const idx = parseInt(qIdx);
+                    correctAnswersRevealed[idx] = true;
+                    renderQuestions();  // refresh to show answer badge
+                });
+            });
+        }
+
+        // update score based on matching userAnswers with correct index
+        function updateScore() {
+            if (!questions.length) {
+                scoreDisplay.textContent = `0 / 20`;
+                return;
+            }
+            let correctCount = 0;
+            questions.forEach((q, i) => {
+                if (userAnswers[i] !== undefined && userAnswers[i] === q.correct) {
+                    correctCount++;
+                }
+            });
+            scoreDisplay.textContent = `${correctCount} / ${questions.length}`;
+        }
+
+        // ---------- subject switch ----------
+        subjectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const subj = card.dataset.subject;
+                if (!subj) return;
+                // update active visual
+                subjectCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                currentSubject = subj;
+
+                // show topics panel only for biology
+                if (subj === 'biology') {
+                    topicsPanel.classList.remove('hide');
+                } else {
+                    topicsPanel.classList.add('hide');
+                }
+
+                // reset everything when subject changes
+                resetQuizState();
+                // for non-bio, adjust display
+                if (subj !== 'biology') {
+                    activeTopicSpan.textContent = `${subj} questions`; // generic
+                } else {
+                    activeTopicSpan.textContent = selectedTopic;
+                }
+            });
+        });
+
+        // ---------- generate button (simulate AI call) ----------
+        generateBtn.addEventListener('click', () => {
+            // show loader
+            loader.style.display = 'inline-flex';
+            generateBtn.disabled = true;
+
+            setTimeout(() => {
+                // generate fresh 20 questions based on active topic/subject
+                let topicForGen = selectedTopic;
+                if (currentSubject !== 'biology') {
+                    topicForGen = currentSubject + ' core topics';
+                } else {
+                    topicForGen = selectedTopic;
+                }
+                const newQuestions = generateQuestionsForTopic(topicForGen, 20);
+                questions = newQuestions;
+                userAnswers = new Array(20).fill(null);
+                correctAnswersRevealed = new Array(20).fill(false);
+                renderQuestions();
+                updateScore();
+                loader.style.display = 'none';
+                generateBtn.disabled = false;
+            }, 600); // simulate AI thinking
+        });
+
+        // reset button
+        resetBtn.addEventListener('click', () => {
+            resetQuizState();
+        });
+
+        // helper to reset quiz state (empty questions)
+        renderTopicChips();     // fill topics
+        // preload default set? optionally, we can start with empty.
+        resetQuizState();       // no questions initially
+
+        // if by chance subject is biology, panel visible (default)
+        // ensure subject active marker matches (biology already active in html)
+    })();
+</script>
+<!-- ensure any hidden classes for topics panel - by default visible because biology is default -->
+</body>
+</html>
